@@ -1,0 +1,67 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+
+}
+
+.question-wrapper {
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 0.3fr 1.2fr 1.7fr 0.8fr; 
+    gap: 0px 0px; 
+    justify-content: center;
+    align-content: center;
+    grid-template-areas: 
+      "a"
+      "b"
+      "c"
+      "d"; 
+    width: 800px;
+    margin: auto; 
+}
+
+.category {
+    grid-area: a;
+    background-color: blue;
+
+}
+
+.question {
+    grid-area: b;
+    background-color: gray;
+}
+
+.answers {
+    grid-area: c;
+    background-color: darkmagenta;
+}
+
+.dungeon-prog {
+    grid-area: d;
+    background-color: darkcyan;
+    display: grid; 
+    grid-template-columns: 1.2fr 0.8fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 20px 0px; 
+    grid-template-areas: 
+      "a c"
+      "b d"; 
+}
+
+.progress {
+    grid-area: a;
+}
+
+.prog-bar {
+    grid-area: b; 
+}
+
+.power-title {
+    grid-area: c;
+}
+
+.powers {
+    grid-area: d;
+}
