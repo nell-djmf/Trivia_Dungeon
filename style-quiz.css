@@ -78,12 +78,14 @@ body {
     grid-area: e;
     background-color: darkcyan;
     display: grid; 
-    grid-template-columns: 1.2fr 0.8fr; 
-    grid-template-rows: 1fr 1fr; 
-    gap: 20px 0px; 
+    grid-template-columns: 0.7fr 0.8fr 1.5fr; 
+    grid-template-rows: 1fr 0.4fr 1.2fr; 
+    gap: 0px 0px; 
     grid-template-areas: 
-      "a c"
-      "b d"; 
+      "a a c"
+      "b b c"
+      "e f d";
+    
 }
 
 .progress {
@@ -100,4 +102,15 @@ body {
 
 .powers {
     grid-area: d;
+}
+
+.HP {
+    grid-area: e;
+    background-color: darkgreen;
+   
+}
+
+.HP-amount {
+    grid-area: f;
+    background-color: darkgreen;
 }
