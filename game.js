@@ -1,5 +1,6 @@
 const DOMAIN = 'https://opentdb.com/api.php?amount=50&type=multiple'
 
+//GET TRIVIA HTML ELEMENTS
 const newEncounter = document.querySelector('.new-encounter')
 const category = document.querySelector('.category')
 const question = document.getElementsByClassName('question')[0]
@@ -7,20 +8,29 @@ const progress = document.querySelector('.prog-bar')
 const power = document.querySelector('.powers')
 const hpAmount = document.querySelector(".HP-amount")
 
-let health = "100"
+
+//PLAYER ATTRIBUTES
+let powerUse = 0
+let health = "10"
+
+//GAME PROGRESS
 let gameProgress = "="
 
+//ANSWER HTML ELEMENTS
 let answers = document.getElementsByClassName('answer-choice')
-
 const ans1 = document.querySelector('.ans1')
 const ans2 = document.querySelector('.ans2')
 const ans3 = document.querySelector('.ans3')
 const ans4 = document.querySelector('.ans4')
 
+
+//GET NEW QUESTIONS
 newEncounter.addEventListener('click', () => {
     newEnemyAppears()
 })
 
+
+//FETCH QUESTIONS
 const newEnemyAppears = async () => {
     let response = await axios.get(
         `https://opentdb.com/api.php?amount=50&type=multiple`
@@ -52,7 +62,7 @@ const newEnemyAppears = async () => {
     
 }
 
-
+//CHECK ANSWERS
 for (let i = 0; i < answers.length; i++) {
     answers[i].addEventListener('click', () => {
     if (answers[i].classList.contains('ans1')) {
@@ -65,14 +75,62 @@ for (let i = 0; i < answers.length; i++) {
         newEnemyAppears()
         hpAmount.innerHTML = health--
         console.log('wrong')
+        dungeonExit()
     }
     })
 }
 
+
+//GAME CONDITIONS
 const dungeonExit = () => {
-    if (gameProgress === "==========") {
-        console.log('you win')
+    if (gameProgress === "==========" && health > 0) {
+        alert('You win! Press ok to play again')
+        gameProgress = "="
+        gameProgress.innerHTML = gameProgress
+        health = 10
+        hpAmount.innerHTML = health
+    } else if (health < 0) {
+        alert('You died. Press ok to play again')
+        gameProgress = "="
+        gameProgress.innerHTML = gameProgress
+        health = 10
+        hpAmount.innerHTML = health
     }
 }
 
+
+
+//CLASSES
+class Paladin {
+    constructor (power) {
+        this.health = "10"
+        this.power = "Divine Blessing"
+        this.powerUse = 0
+    }
     
+    divineBlessing() {
+        document.getElementsByClassName("ans3 ans4").style.display = "none"
+        powerUse = powerUse++
+        if (powerUse === 3) {
+            power.style.display = "none"
+        }
+    }
+
+}
+
+class Archer {
+    constructor (power) {
+        this.health = "10"
+        this.power = "Lightning Reflexes"
+        this.powerUse = 0
+    }
+    
+    lightningReflexes() {
+        newEnemyAppears()
+        powerUse = powerUse++
+        if (powerUse === 2) {
+            power.style.display = "none"
+        }
+    }
+
+}
