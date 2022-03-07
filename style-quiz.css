@@ -10,8 +10,8 @@ body {
     display: grid; 
     grid-auto-columns: 1fr; 
     grid-template-columns: 1fr; 
-    grid-template-rows: 0.3fr 0.4fr 1.6fr 1.7fr 1fr; 
-    gap: 0px 0px; 
+    grid-template-rows: 0.4fr 0.3fr 1.7fr 1.6fr 1fr; 
+    gap: 0px 5px; 
     grid-template-areas: 
     "a"
     "b"
@@ -24,7 +24,7 @@ body {
     margin: auto; 
 }
 
-.start {
+.new-encounter {
     grid-area: a;
     background-color: gray;
 
@@ -37,13 +37,42 @@ body {
 
 .question {
     grid-area: c;
+    font-size: 25px;
     background-color: gray;
 }
 
 .answers {
     grid-area: d;
     background-color: darkmagenta;
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    grid-template-areas: 
+      "a b"
+      "c d"; 
+    width: 800px;
+    justify-content: center;
+    align-content: center;
 }
+
+.ans1 {
+    grid-area: a;
+}
+
+.ans2 {
+    grid-area: b;
+}
+
+.ans3 {
+    grid-area: c;
+}
+
+.ans4 {
+    grid-area: d;
+    
+}
+
 
 .dungeon-prog {
     grid-area: e;
