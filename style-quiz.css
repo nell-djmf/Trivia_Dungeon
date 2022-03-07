@@ -7,39 +7,46 @@ body {
 
 .question-wrapper {
     display: grid; 
+    display: grid; 
     grid-auto-columns: 1fr; 
     grid-template-columns: 1fr; 
-    grid-template-rows: 0.3fr 1.2fr 1.7fr 0.8fr; 
+    grid-template-rows: 0.3fr 0.4fr 1.6fr 1.7fr 1fr; 
     gap: 0px 0px; 
+    grid-template-areas: 
+    "a"
+    "b"
+    "c"
+    "d"
+    "e"; 
+    width: 800px; 
     justify-content: center;
     align-content: center;
-    grid-template-areas: 
-      "a"
-      "b"
-      "c"
-      "d"; 
-    width: 800px;
     margin: auto; 
 }
 
-.category {
+.start {
     grid-area: a;
-    background-color: blue;
+    background-color: gray;
 
 }
 
-.question {
+.category {
     grid-area: b;
+    background-color: blue;
+}
+
+.question {
+    grid-area: c;
     background-color: gray;
 }
 
 .answers {
-    grid-area: c;
+    grid-area: d;
     background-color: darkmagenta;
 }
 
 .dungeon-prog {
-    grid-area: d;
+    grid-area: e;
     background-color: darkcyan;
     display: grid; 
     grid-template-columns: 1.2fr 0.8fr; 
