@@ -37,28 +37,28 @@ Choose your toolkit carefully! Your powers may be the difference between life an
 ***
 
 ### **Paladin**
-*Power Attribute: Light*
+🛡️ *Power Attribute: Light*
 - **[Divine Blessing]** Pray to the gods for guidance and omit 2 wrong answers (3 uses)
 
-![A paragon of justice](https://i.pinimg.com/736x/77/55/ed/7755ed1dfc30018919b0a5f09eebbf5d.jpg)
+<!-- ![A paragon of justice](https://i.imgur.com/MiXLOIQ.png) -->
 
 ### **Archer**
-*Power Attribute: Light*
+🏹 *Power Attribute: Light*
 - **[Lightning Reflexes]** Evade a monster to skip a question entirely (2 uses)
 
-![A relentless hunter](https://www.teahub.io/photos/full/273-2734515_fantasy-art-archer-fantasy-girl-redhead-bow-hd.jpg)
+<!-- ![A relentless hunter](https://i.imgur.com/m6DxlWk.png) -->
 
 ### **Rogue**
-*Power Attribute: Dark*
+🗡️ *Power Attribute: Dark*
 -  **[Trap Sense]** Use your uncanny intuition to narrow down item choices to 1 safe item, 1 cursed (3 uses)
 
-![A knife in the dark](https://i.pinimg.com/736x/8c/58/32/8c58321997d07c6831fa09a5687eac63.jpg)
+<!-- ![A knife in the dark](https://i.imgur.com/VBTzwFu.png) -->
 
 ### **Wizard**
-*Power Attribute: Dark*
+🪄 *Power Attribute: Dark*
 - **[Chronomancer]** Alter time to skip 1 trap phase, with no item penalty (2 uses)
 
-![A master of the arcane](https://64.media.tumblr.com/6ebfd6fecaf117e378706a4206c811f6/tumblr_pvo8wiTaF01r7i8nxo1_1280.jpg)
+<!-- ![A master of the arcane](https://i.imgur.com/pg1Ptbn.png) -->
 
 
 
