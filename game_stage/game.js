@@ -7,11 +7,10 @@ const question = document.getElementsByClassName('question')[0]
 const progress = document.querySelector('.prog-bar')
 const power = document.querySelector('.powers')
 const hpAmount = document.querySelector(".HP-amount")
+const classTitle = document.querySelector('.power-title')
 
 
-//PLAYER ATTRIBUTES
-let powerUse = 0
-let health = "10"
+
 
 //GAME PROGRESS
 let gameProgress = "="
@@ -101,11 +100,32 @@ const dungeonExit = () => {
 
 
 //CLASSES
-class Paladin {
-    constructor (power) {
+
+class Player {
+    constructor (name, powerUse, health) {
+        this.name = name
         this.health = "10"
-        this.power = "Divine Blessing"
-        this.powerUse = 0
+        this.powerUse = 0 
+    }
+    
+    powerGet() {
+        power.innerHTML = this.powerName
+    }
+
+    getClassTitle() {
+        classTitle.innerHTML = this.name
+
+    }
+
+}
+
+
+
+class Paladin extends Player {
+    constructor (name, powerName) {
+        super (powerUse, health)
+        this.powerName = "Divine Blessing"
+  
     }
     
     divineBlessing() {
@@ -118,11 +138,11 @@ class Paladin {
 
 }
 
-class Archer {
-    constructor (power) {
-        this.health = "10"
-        this.power = "Lightning Reflexes"
-        this.powerUse = 0
+class Archer extends Player {
+    constructor (name, powerName) {
+        super (powerUse, health)
+        this.powerName = "Lightning Reflexes"
+        
     }
     
     lightningReflexes() {
