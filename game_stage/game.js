@@ -32,6 +32,7 @@ const pickGoblet = document.querySelector('.goblet')
 //GAME PROGRESS
 let gameProgress = "="
 let roundCount = 0
+let trapCheck = false
 
 //ANSWER HTML ELEMENTS
 let answers = document.getElementsByClassName('answer-choice')
@@ -85,20 +86,24 @@ const newEnemyAppears = async () => {
 
 //TRAP PHASE
 const trapPhase = () => {
+    trapCheck = true
     document.querySelector('.trap-container').style.display = "grid"
-    document.querySelector('.question-wrapper').style.display = "none"
+    document.querySelector('.category').style.display = "none"
     document.querySelector('.answers').style.display = "none"
-    document.querySelector('.dungeon-prog').style.display = "none"
-  
+    document.querySelector('.question').style.display = "none"
+    document.querySelector('.new-encounter').style.display = "none"
+    document.querySelector(".cloak-wrapper").style.display = ""
+    document.querySelector(".goblet-wrapper").style.display = ""
 
     for (let i = 0; i < itemButton.length; i++) {
         itemButton[i].addEventListener('click', () => {
-
         if (itemButton[i].classList.contains('rock')) {
-            document.querySelector('.question-wrapper').style.display = "grid"
+            document.querySelector('.category').style.display = ""
             document.querySelector('.answers').style.display = "grid"
-            document.querySelector('.dungeon-prog').style.display = "grid"
+            document.querySelector('.question').style.display = ""
+            document.querySelector('.new-encounter').style.display = ""
             document.querySelector('.trap-container').style.display = "none"
+            trapCheck = false
             newEnemyAppears()
     
             
@@ -115,9 +120,15 @@ const trapPhase = () => {
         }
         })
     }
+
+
+    
+}
+
+
     
 
-}
+
 
 //CHECK ANSWERS
 for (let i = 0; i < answers.length; i++) {
@@ -236,8 +247,8 @@ class Rogue extends Player {
     }
     
     trapSense() {
-        document.querySelector(".trap3").style.display = "none"
-        document.querySelector(".trap4").style.display = "none"
+        document.querySelector(".cloak-wrapper").style.display = "none"
+        document.querySelector(".goblet-wrapper").style.display = "none"
         this.powerUse = this.powerUse + 1
         if (this.powerUse === 3) {
             power.style.display = "none"
@@ -256,6 +267,12 @@ class Wizard extends Player {
     }
     
     chronomancer() {
+        document.querySelector('.category').style.display = ""
+        document.querySelector('.answers').style.display = "grid"
+        document.querySelector('.question').style.display = ""
+        document.querySelector('.new-encounter').style.display = ""
+        document.querySelector('.trap-container').style.display = "none"
+        trapCheck = false
         newEnemyAppears()
         this.powerUse = this.powerUse + 1
         if (this.powerUse === 2) {
@@ -317,11 +334,32 @@ for (let i = 0; i < classButton.length; i++) {
 
 //USE POWER
 power.addEventListener('click', () => {
-    if (power.innerHTML === 'Divine Blessing') {
-        newPal.divineBlessing()
+    if (trapCheck === false) {
+        if (power.innerHTML === 'Divine Blessing') {
+            newPal.divineBlessing()
+    
+        } else if (power.innerHTML === 'Lightning Reflexes') {
+            newArc.lightningReflexes()
+    
+        } else if (power.innerHTML === 'Trap Sense') {
+            alert('This ability can only be used in the trap phase')
+        } else if (power.innerHTML === 'Chronomancer') {
+            alert('This ability can only be used in the trap phase')
+        }
 
-    } else if (power.innerHTML === 'Lightning Reflexes') {
-        newArc.lightningReflexes()
-
+    } else if (trapCheck === true) {
+        if (power.innerHTML === 'Divine Blessing') {
+            alert('This ability can only be used in the question phase')
+    
+        } else if (power.innerHTML === 'Lightning Reflexes') {
+            alert('This ability can only be used in the question phase')
+    
+        } else if (power.innerHTML === 'Trap Sense') {
+            newRog.trapSense()
+            
+        } else if (power.innerHTML === 'Chronomancer') {
+            newWiz.chronomancer()
+            
+        }
     }
 })
