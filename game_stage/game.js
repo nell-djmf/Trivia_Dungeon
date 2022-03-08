@@ -50,6 +50,7 @@ newEncounter.addEventListener('click', () => {
 
 //FETCH QUESTIONS
 const newEnemyAppears = async () => {
+    trapCheck = false
     let response = await axios.get(
         `https://opentdb.com/api.php?amount=50&type=multiple`
       )
@@ -76,7 +77,7 @@ const newEnemyAppears = async () => {
     document.querySelector(".ans4").style.display = ""
     
     
-
+    phaseCheck()
     // console.log(showQuestion)
     // console.log(showAnswer1)
     // console.log(showAnswer2)
@@ -84,36 +85,48 @@ const newEnemyAppears = async () => {
     
 }
 
+const phaseCheck = () => {
+    if (trapCheck === true) {
+        document.querySelector('.trap-container').style.display = "grid"
+        document.querySelector('.category').style.display = "none"
+        document.querySelector('.answers').style.display = "none"
+        document.querySelector('.question').style.display = "none"
+        document.querySelector('.new-encounter').style.display = "none"
+        document.querySelector(".cloak-wrapper").style.display = ""
+        document.querySelector(".goblet-wrapper").style.display = ""
+    } else if (trapCheck === false) {
+        document.querySelector('.category').style.display = ""
+        document.querySelector('.answers').style.display = "grid"
+        document.querySelector('.question').style.display = ""
+        document.querySelector('.new-encounter').style.display = ""
+        document.querySelector('.trap-container').style.display = "none"
+
+    }
+}
+
 //TRAP PHASE
 const trapPhase = () => {
     trapCheck = true
-    document.querySelector('.trap-container').style.display = "grid"
-    document.querySelector('.category').style.display = "none"
-    document.querySelector('.answers').style.display = "none"
-    document.querySelector('.question').style.display = "none"
-    document.querySelector('.new-encounter').style.display = "none"
-    document.querySelector(".cloak-wrapper").style.display = ""
-    document.querySelector(".goblet-wrapper").style.display = ""
-
     for (let i = 0; i < itemButton.length; i++) {
         itemButton[i].addEventListener('click', () => {
         if (itemButton[i].classList.contains('rock')) {
-            document.querySelector('.category').style.display = ""
-            document.querySelector('.answers').style.display = "grid"
-            document.querySelector('.question').style.display = ""
-            document.querySelector('.new-encounter').style.display = ""
-            document.querySelector('.trap-container').style.display = "none"
-            trapCheck = false
+            alert(`It's just a donut. You're safe.`)
             newEnemyAppears()
     
             
         } else if (itemButton[i].classList.contains('tonic')) {
+            alert(`The TONIC OF FORGETFULNESS makes your mind hazy. You may have difficulty remembering choices.`)
+            newEnemyAppears()
 
     
         } else if (itemButton[i].classList.contains('cloak')) {
+            alert(`The CLOAK OF ENERGY DAMPENING smothers your senses. Your powers are out of reach, for now.`)
+            newEnemyAppears()
     
     
         } else if (itemButton[i].classList.contains('goblet')) {
+            alert(`Drinking out of the POISONED GOBLET was not a good idea. You feel yourself grow weak.`)
+            newEnemyAppears()
   
     
     
