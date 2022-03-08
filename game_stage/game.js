@@ -26,10 +26,7 @@ const pickCloak = document.querySelector('.cloak')
 const pickGoblet = document.querySelector('.goblet')
 
 
-
-
-
-//GAME PROGRESS
+//GAME STATUS
 let gameProgress = "="
 let roundCount = 0
 let trapCheck = false
