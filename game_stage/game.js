@@ -21,6 +21,7 @@ const classTitle = document.querySelector('.power-title')
 
 
 
+
 //GAME PROGRESS
 let gameProgress = "="
 
@@ -60,13 +61,16 @@ const newEnemyAppears = async () => {
     ans2.innerHTML = showAnswer2
     ans3.innerHTML = showAnswer3
     ans4.innerHTML = showAnswer4
+
+    document.querySelector(".ans3").style.display = ""
+    document.querySelector(".ans4").style.display = ""
     
     
 
-    console.log(showQuestion)
-    console.log(showAnswer1)
-    console.log(showAnswer2)
-    console.log(response)
+    // console.log(showQuestion)
+    // console.log(showAnswer1)
+    // console.log(showAnswer2)
+    // console.log(response)
     
 }
 
@@ -79,9 +83,10 @@ for (let i = 0; i < answers.length; i++) {
         console.log('correct')
         newEnemyAppears()
         dungeonExit()
+    
     } else {
         newEnemyAppears()
-        hpAmount.innerHTML = Player.health.value--
+        hpAmount.innerHTML = Player.health--
         console.log('wrong')
         dungeonExit()
     }
@@ -96,13 +101,13 @@ const dungeonExit = () => {
         gameProgress = "="
         gameProgress.innerHTML = gameProgress
         Player.health = 10
-        hpAmount.innerHTML = health
+        hpAmount.innerHTML = Player.health
     } else if (Player.health < 0) {
         alert('You died. Press ok to play again')
         gameProgress = "="
         gameProgress.innerHTML = gameProgress
         Player.health = 10
-        hpAmount.innerHTML = Player.health
+        hpAmount.innerHTML = Player.health 
     }
 }
 
@@ -111,10 +116,11 @@ const dungeonExit = () => {
 //CLASSES
 
 class Player {
-    constructor (name, powerUse, health) {
+    constructor (name, powerUse, health, powerName) {
         this.name = name
         this.health = 10
-        this.powerUse = 0 
+        this.powerUse = 0
+        this.powerName = powerName
     }
     
     powerGet() {
@@ -128,21 +134,24 @@ class Player {
 
 }
 
+Player.health = 10
+
 
 
 class Paladin extends Player {
-    constructor (name, powerName) {
+    constructor (name, powerName, powerUse) {
         super ()
         this.name = name
         this.powerName = "Divine Blessing"
-
+        this.powerUse = 0
   
     }
     
     divineBlessing() {
-        document.getElementsByClassName("ans3 ans4").style.display = "none"
-        powerUse = powerUse++
-        if (powerUse === 3) {
+        document.querySelector(".ans3").style.display = "none"
+        document.querySelector(".ans4").style.display = "none"
+        this.powerUse = this.powerUse + 1
+        if (this.powerUse === 3) {
             power.style.display = "none"
         }
     }
@@ -150,18 +159,19 @@ class Paladin extends Player {
 }
 
 class Archer extends Player {
-    constructor (name, powerName) {
+    constructor (name, powerName, powerUse) {
         super ()
         this.name = name
         this.powerName = "Lightning Reflexes"
+        this.powerUse = 0
 
         
     }
     
     lightningReflexes() {
         newEnemyAppears()
-        powerUse = powerUse++
-        if (powerUse === 2) {
+        this.powerUse = this.powerUse + 1
+        if (this.powerUse === 2) {
             power.style.display = "none"
         }
     }
@@ -169,18 +179,20 @@ class Archer extends Player {
 }
 
 class Rogue extends Player {
-    constructor (name, powerName) {
+    constructor (name, powerName, powerUse) {
         super ()
         this.name = name
         this.powerName = "Trap Sense"
+        this.powerUse = 0
 
         
     }
     
     trapSense() {
-        document.getElementsByClassName("trap3 trap4").style.display = "none"
-        powerUse = powerUse++
-        if (powerUse === 3) {
+        document.querySelector(".trap3").style.display = "none"
+        document.querySelector(".trap4").style.display = "none"
+        this.powerUse = this.powerUse + 1
+        if (this.powerUse === 3) {
             power.style.display = "none"
         }
     }
@@ -188,23 +200,35 @@ class Rogue extends Player {
 }
 
 class Wizard extends Player {
-    constructor (name, powerName) {
+    constructor (name, powerName, powerUse) {
         super ()
         this.name = name
         this.powerName = "Chronomancer"
+        this.powerUse = 0
 
     }
     
     chronomancer() {
         newEnemyAppears()
-        powerUse = powerUse++
-        if (powerUse === 2) {
+        this.powerUse = this.powerUse + 1
+        if (this.powerUse === 2) {
             power.style.display = "none"
         }
     }
 
 }
+//CLASS CONSTANTS
+const player1 = new Player('Paladin', 0, 10, 'Divine Blessing')
+const newPal = new Paladin('Paladin')
 
+const player2 = new Player('Archer', 0, 10, 'Lightning Reflexes')
+const newArc = new Archer('Archer')
+
+const player3 = new Player('Rogue', 0, 10, 'Trap Sense')
+const newRog = new Rogue('Rogue')
+
+const player4 = new Player('Wizard', 0, 10, 'Chronomancer')
+const newWiz = new Wizard('Wizard')
 
 //SET CLASS
 
@@ -216,8 +240,6 @@ for (let i = 0; i < classButton.length; i++) {
     document.querySelector('.dungeon-prog').style.display = "grid"
 
     if (classButton[i].classList.contains('paladin')) {
-        const player1 = new Player('Paladin', 0, "10")
-        const newPal = new Paladin('Paladin')
         player1.getClassTitle(newPal)
         player1.powerGet(newPal)
 
@@ -225,27 +247,34 @@ for (let i = 0; i < classButton.length; i++) {
 
         
     } else if (classButton[i].classList.contains('archer')) {
-        const player1 = new Player('Archer', 0, "10")
-        const newArc = new Archer('Archer')
-        player1.getClassTitle(newArc)
-        player1.powerGet(newArc)
+        player2.getClassTitle(newArc)
+        player2.powerGet(newArc)
         console.log(newArc)
 
     } else if (classButton[i].classList.contains('rogue')) {
-        const player1 = new Player('Rogue', 0, "10")
-        const newRog = new Rogue('Rogue')
-        player1.getClassTitle(newRog)
-        player1.powerGet(newRog)
+        player3.getClassTitle(newRog)
+        player3.powerGet(newRog)
         console.log(newRog)
 
     } else if (classButton[i].classList.contains('wizard')) {
-        const player1 = new Player('Wizard', 0, "10")
-        const newWiz = new Wizard('Wizard')
-        player1.getClassTitle(newWiz)
-        player1.powerGet(newWiz)
+        player4.getClassTitle(newWiz)
+        player4.powerGet(newWiz)
         console.log(newWiz)
 
 
     }
     })
 }
+
+
+
+//USE POWER
+power.addEventListener('click', () => {
+    if (power.innerHTML === 'Divine Blessing') {
+        newPal.divineBlessing()
+
+    } else if (power.innerHTML === 'Lightning Reflexes') {
+        newArc.lightningReflexes()
+
+    }
+})
