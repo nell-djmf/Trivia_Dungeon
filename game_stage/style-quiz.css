@@ -5,6 +5,92 @@ body {
 
 }
 
+/* CLASS PICK */
+
+.class-pick-container {
+    display: none;
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+    "a b c d"; 
+    width: 800px; 
+    height: 200px; 
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+span.icon {
+    font-size: 40px;
+}
+
+.paladin-wrapper {
+    display: none;
+    background-color: pink;
+    grid-area: a;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.paladin {
+    background-color: grey;
+    height: 100px;
+    width: 100px;
+}
+
+
+.archer-wrapper {
+    display: none;
+    background-color: lightgreen;
+    grid-area: b;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.archer {
+    background-color: grey;
+    height: 100px;
+    width: 100px;
+}
+
+.rogue-wrapper {
+    display: none;
+    background-color: goldenrod;
+    grid-area: c;
+    justify-content: center;
+    align-items: center;
+}
+
+.rogue {
+    background-color: grey;
+    height: 100px;
+    width: 100px;
+}
+
+.wizard-wrapper {
+    display: none;
+    background-color: lightseagreen;
+    grid-area: d;
+    justify-content: center;
+    align-items: center;
+}
+
+.wizard {
+    background-color: grey;
+    height: 100px;
+    width: 100px;
+    font-size: 20px;
+}
+
+/* GAME STAGE */
+
 .question-wrapper {
     display: grid; 
     display: grid; 

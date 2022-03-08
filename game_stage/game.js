@@ -1,5 +1,13 @@
 const DOMAIN = 'https://opentdb.com/api.php?amount=50&type=multiple'
 
+//CLASS PICK
+const pickPal = document.querySelector('.paladin')
+const pickArc = document.querySelector('.archer')
+const pickRog = document.querySelector('.rogue')
+const pickWiz = document.querySelector('.wizard')
+
+
+
 //GET TRIVIA HTML ELEMENTS
 const newEncounter = document.querySelector('.new-encounter')
 const category = document.querySelector('.category')
@@ -96,6 +104,9 @@ const dungeonExit = () => {
         hpAmount.innerHTML = health
     }
 }
+
+//SET CLASS
+
 
 
 

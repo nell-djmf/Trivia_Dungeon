@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+    text-align: center;
+}
+
+.welcome {
+    color: white;
+    position: absolute;
+    top: 20%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
