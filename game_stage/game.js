@@ -1,6 +1,7 @@
 const DOMAIN = 'https://opentdb.com/api.php?amount=50&type=multiple'
 
 //CLASS PICK
+const classButton = document.getElementsByClassName('class-button')
 const pickPal = document.querySelector('.paladin')
 const pickArc = document.querySelector('.archer')
 const pickRog = document.querySelector('.rogue')
@@ -80,7 +81,7 @@ for (let i = 0; i < answers.length; i++) {
         dungeonExit()
     } else {
         newEnemyAppears()
-        hpAmount.innerHTML = health--
+        hpAmount.innerHTML = Player.health.value--
         console.log('wrong')
         dungeonExit()
     }
@@ -90,23 +91,20 @@ for (let i = 0; i < answers.length; i++) {
 
 //GAME CONDITIONS
 const dungeonExit = () => {
-    if (gameProgress === "==========" && health > 0) {
+    if (gameProgress === "==========" && Player.health > 0) {
         alert('You win! Press ok to play again')
         gameProgress = "="
         gameProgress.innerHTML = gameProgress
-        health = 10
+        Player.health = 10
         hpAmount.innerHTML = health
-    } else if (health < 0) {
+    } else if (Player.health < 0) {
         alert('You died. Press ok to play again')
         gameProgress = "="
         gameProgress.innerHTML = gameProgress
-        health = 10
-        hpAmount.innerHTML = health
+        Player.health = 10
+        hpAmount.innerHTML = Player.health
     }
 }
-
-//SET CLASS
-
 
 
 
@@ -115,7 +113,7 @@ const dungeonExit = () => {
 class Player {
     constructor (name, powerUse, health) {
         this.name = name
-        this.health = "10"
+        this.health = 10
         this.powerUse = 0 
     }
     
@@ -134,8 +132,10 @@ class Player {
 
 class Paladin extends Player {
     constructor (name, powerName) {
-        super (powerUse, health)
+        super ()
+        this.name = name
         this.powerName = "Divine Blessing"
+
   
     }
     
@@ -151,8 +151,10 @@ class Paladin extends Player {
 
 class Archer extends Player {
     constructor (name, powerName) {
-        super (powerUse, health)
+        super ()
+        this.name = name
         this.powerName = "Lightning Reflexes"
+
         
     }
     
@@ -164,4 +166,86 @@ class Archer extends Player {
         }
     }
 
+}
+
+class Rogue extends Player {
+    constructor (name, powerName) {
+        super ()
+        this.name = name
+        this.powerName = "Trap Sense"
+
+        
+    }
+    
+    trapSense() {
+        document.getElementsByClassName("trap3 trap4").style.display = "none"
+        powerUse = powerUse++
+        if (powerUse === 3) {
+            power.style.display = "none"
+        }
+    }
+
+}
+
+class Wizard extends Player {
+    constructor (name, powerName) {
+        super ()
+        this.name = name
+        this.powerName = "Chronomancer"
+
+    }
+    
+    chronomancer() {
+        newEnemyAppears()
+        powerUse = powerUse++
+        if (powerUse === 2) {
+            power.style.display = "none"
+        }
+    }
+
+}
+
+
+//SET CLASS
+
+for (let i = 0; i < classButton.length; i++) {
+    classButton[i].addEventListener('click', () => {
+    document.querySelector('.class-picker-container').style.display = "none"
+    document.querySelector('.question-wrapper').style.display = "grid"
+    document.querySelector('.answers').style.display = "grid"
+    document.querySelector('.dungeon-prog').style.display = "grid"
+
+    if (classButton[i].classList.contains('paladin')) {
+        const player1 = new Player('Paladin', 0, "10")
+        const newPal = new Paladin('Paladin')
+        player1.getClassTitle(newPal)
+        player1.powerGet(newPal)
+
+        console.log(newPal)
+
+        
+    } else if (classButton[i].classList.contains('archer')) {
+        const player1 = new Player('Archer', 0, "10")
+        const newArc = new Archer('Archer')
+        player1.getClassTitle(newArc)
+        player1.powerGet(newArc)
+        console.log(newArc)
+
+    } else if (classButton[i].classList.contains('rogue')) {
+        const player1 = new Player('Rogue', 0, "10")
+        const newRog = new Rogue('Rogue')
+        player1.getClassTitle(newRog)
+        player1.powerGet(newRog)
+        console.log(newRog)
+
+    } else if (classButton[i].classList.contains('wizard')) {
+        const player1 = new Player('Wizard', 0, "10")
+        const newWiz = new Wizard('Wizard')
+        player1.getClassTitle(newWiz)
+        player1.powerGet(newWiz)
+        console.log(newWiz)
+
+
+    }
+    })
 }
