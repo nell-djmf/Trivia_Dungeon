@@ -195,3 +195,84 @@ span.icon {
     grid-area: f;
     background-color: darkgreen;
 }
+
+
+/* TRAP PHASE */
+
+
+.trap-container {
+    display: none; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+    "a b c d"; 
+    width: 800px; 
+    height: 200px; 
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+span.item {
+    font-size: 40px;
+}
+
+.rock-wrapper {
+    background-color: pink;
+    grid-area: a;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.rock {
+    background-color: grey;
+    height: 100px;
+    width: 100px;
+}
+
+
+.tonic-wrapper {
+    background-color: lightgreen;
+    grid-area: b;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.tonic {
+    background-color: grey;
+    height: 100px;
+    width: 100px;
+}
+
+.cloak-wrapper {
+    background-color: goldenrod;
+    grid-area: c;
+    justify-content: center;
+    align-items: center;
+}
+
+.cloak {
+    background-color: grey;
+    height: 100px;
+    width: 100px;
+}
+
+.goblet-wrapper {
+    background-color: lightseagreen;
+    grid-area: d;
+    justify-content: center;
+    align-items: center;
+}
+
+.goblet {
+    background-color: grey;
+    height: 100px;
+    width: 100px;
+    font-size: 20px;
+}

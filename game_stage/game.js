@@ -18,12 +18,20 @@ const power = document.querySelector('.powers')
 const hpAmount = document.querySelector(".HP-amount")
 const classTitle = document.querySelector('.power-title')
 
+//GET TRAP HTML ELEMENTS
+const itemButton = document.getElementsByClassName('item-button')
+const pickRock = document.querySelector('.rock')
+const pickTonic = document.querySelector('.tonic')
+const pickCloak = document.querySelector('.cloak')
+const pickGoblet = document.querySelector('.goblet')
+
 
 
 
 
 //GAME PROGRESS
 let gameProgress = "="
+let roundCount = 0
 
 //ANSWER HTML ELEMENTS
 let answers = document.getElementsByClassName('answer-choice')
@@ -62,6 +70,7 @@ const newEnemyAppears = async () => {
     ans3.innerHTML = showAnswer3
     ans4.innerHTML = showAnswer4
 
+    
     document.querySelector(".ans3").style.display = ""
     document.querySelector(".ans4").style.display = ""
     
@@ -72,6 +81,42 @@ const newEnemyAppears = async () => {
     // console.log(showAnswer2)
     // console.log(response)
     
+}
+
+//TRAP PHASE
+const trapPhase = () => {
+    document.querySelector('.trap-container').style.display = "grid"
+    document.querySelector('.question-wrapper').style.display = "none"
+    document.querySelector('.answers').style.display = "none"
+    document.querySelector('.dungeon-prog').style.display = "none"
+  
+
+    for (let i = 0; i < itemButton.length; i++) {
+        itemButton[i].addEventListener('click', () => {
+
+        if (itemButton[i].classList.contains('rock')) {
+            document.querySelector('.question-wrapper').style.display = "grid"
+            document.querySelector('.answers').style.display = "grid"
+            document.querySelector('.dungeon-prog').style.display = "grid"
+            document.querySelector('.trap-container').style.display = "none"
+            newEnemyAppears()
+    
+            
+        } else if (itemButton[i].classList.contains('tonic')) {
+
+    
+        } else if (itemButton[i].classList.contains('cloak')) {
+    
+    
+        } else if (itemButton[i].classList.contains('goblet')) {
+  
+    
+    
+        }
+        })
+    }
+    
+
 }
 
 //CHECK ANSWERS
@@ -89,6 +134,7 @@ for (let i = 0; i < answers.length; i++) {
         hpAmount.innerHTML = Player.health--
         console.log('wrong')
         dungeonExit()
+        trapPhase()
     }
     })
 }
@@ -107,7 +153,8 @@ const dungeonExit = () => {
         gameProgress = "="
         gameProgress.innerHTML = gameProgress
         Player.health = 10
-        hpAmount.innerHTML = Player.health 
+        hpAmount.innerHTML = Player.health
+
     }
 }
 
