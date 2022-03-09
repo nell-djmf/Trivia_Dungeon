@@ -45,18 +45,15 @@ const ans3 = document.querySelector('.ans3')
 const ans4 = document.querySelector('.ans4')
 
 
-//GET NEW QUESTIONS
-newEncounter.addEventListener('click', () => {
-    newEnemyAppears()
-})
-
 
 //FETCH QUESTIONS
 const newEnemyAppears = async () => {
     trapCheck = false
+
     let response = await axios.get(
         `https://opentdb.com/api.php?amount=50&type=multiple`
       )
+    
     let showCategory = response.data.results[0].category
 
     let showQuestion = response.data.results[0].question
@@ -76,6 +73,7 @@ const newEnemyAppears = async () => {
     ans4.innerHTML = showAnswer4
 
     
+
     document.querySelector(".ans3").style.display = ""
     document.querySelector(".ans4").style.display = ""
     
@@ -95,14 +93,12 @@ const phaseCheck = () => {
         document.querySelector('.category').style.display = "none"
         document.querySelector('.answers').style.display = "none"
         document.querySelector('.question').style.display = "none"
-        document.querySelector('.new-encounter').style.display = "none"
         document.querySelector(".cloak-wrapper").style.display = ""
         document.querySelector(".goblet-wrapper").style.display = ""
     } else if (trapCheck === false) {
         document.querySelector('.category').style.display = ""
         document.querySelector('.answers').style.display = "grid"
         document.querySelector('.question').style.display = ""
-        document.querySelector('.new-encounter').style.display = ""
         document.querySelector('.trap-container').style.display = "none"
         
 
