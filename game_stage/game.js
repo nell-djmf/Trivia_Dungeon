@@ -31,8 +31,12 @@ let gameProgress = "="
 let roundCount = 0
 let trapCheck = false
 
-//ANSWER HTML ELEMENTS
-let answers = document.getElementsByClassName('answer-choice')
+let tonicStatus = false
+let cloakStatus = false
+let gobletStatus = false
+
+//ANSWER BOX HTML ELEMENTS
+let answers = Array.from(document.getElementsByClassName('answer-choice'))
 const ans1 = document.querySelector('.ans1')
 const ans2 = document.querySelector('.ans2')
 const ans3 = document.querySelector('.ans3')
@@ -73,8 +77,9 @@ const newEnemyAppears = async () => {
     document.querySelector(".ans3").style.display = ""
     document.querySelector(".ans4").style.display = ""
     
-    
     phaseCheck()
+    trapPenalty()
+    trapDuration()
     // console.log(showQuestion)
     // console.log(showAnswer1)
     // console.log(showAnswer2)
@@ -97,47 +102,85 @@ const phaseCheck = () => {
         document.querySelector('.question').style.display = ""
         document.querySelector('.new-encounter').style.display = ""
         document.querySelector('.trap-container').style.display = "none"
+        
 
     }
 }
 
 //TRAP PHASE
 const trapPhase = () => {
-    trapCheck = true
-    for (let i = 0; i < itemButton.length; i++) {
-        itemButton[i].addEventListener('click', () => {
-        if (itemButton[i].classList.contains('rock')) {
+    trapCheck = true 
+    Array.from(itemButton).forEach((iButton) => {
+        iButton.addEventListener('click', () => { 
+        if (iButton.classList.contains('rock')) {
             alert(`It's just a donut. You're safe.`)
             newEnemyAppears()
-    
-            
-        } else if (itemButton[i].classList.contains('tonic')) {
+        
+        } else if (iButton.classList.contains('tonic')) {
             alert(`The TONIC OF FORGETFULNESS makes your mind hazy. You may have difficulty remembering choices.`)
+            tonicStatus = true
+            console.log(tonicStatus)
             newEnemyAppears()
-
     
-        } else if (itemButton[i].classList.contains('cloak')) {
+        } else if (iButton.classList.contains('cloak')) {
             alert(`The CLOAK OF ENERGY DAMPENING smothers your senses. Your powers are out of reach, for now.`)
+            cloakStatus = true
             newEnemyAppears()
-    
-    
-        } else if (itemButton[i].classList.contains('goblet')) {
+                
+        } else if (iButton.classList.contains('goblet')) {
             alert(`Drinking out of the POISONED GOBLET was not a good idea. You feel yourself grow weak.`)
-            newEnemyAppears()
-  
-    
-    
-        }
+            gobletStatus = true
+            newEnemyAppears()  
+        } 
+
+
         })
-    }
 
-
-    
+    })
 }
 
 
-    
 
+
+
+
+//TRAP PENALTIES
+const trapPenalty = () => {
+    if (tonicStatus === true) {
+        let hideAnswer = Math.floor(Math.random() * answers.length)
+        answers[hideAnswer].style.display = "none"
+        roundCount = roundCount + 1
+        console.log(hideAnswer)
+        console.log(roundCount)
+
+    } else if (cloakStatus === true) {
+        power.style.display = "none"
+        roundCount = roundCount + 1
+        console.log(roundCount)
+
+    } else if (gobletStatus === true) {
+        Player.health--
+        roundCount = roundCount + 1
+        console.log(roundCount)
+
+    }
+}
+
+
+
+const trapDuration = () => {
+    if (roundCount === 3) {
+    trapClear()
+    }
+}
+    
+const trapClear = () => {
+    tonicStatus = false
+    cloakStatus = false
+    gobletStatus = false
+    roundCount = 0
+
+}
 
 
 //CHECK ANSWERS
@@ -169,12 +212,14 @@ const dungeonExit = () => {
         gameProgress.innerHTML = gameProgress
         Player.health = 10
         hpAmount.innerHTML = Player.health
+        trapClear()
     } else if (Player.health < 0) {
         alert('You died. Press ok to play again')
         gameProgress = "="
         gameProgress.innerHTML = gameProgress
         Player.health = 10
         hpAmount.innerHTML = Player.health
+        trapClear()
 
     }
 }
@@ -306,31 +351,31 @@ const newWiz = new Wizard('Wizard')
 
 //SET CLASS
 
-for (let i = 0; i < classButton.length; i++) {
-    classButton[i].addEventListener('click', () => {
+Array.from(classButton).forEach((cButton) => {
+    cButton.addEventListener('click', () => {
     document.querySelector('.class-picker-container').style.display = "none"
     document.querySelector('.question-wrapper').style.display = "grid"
     document.querySelector('.answers').style.display = "grid"
     document.querySelector('.dungeon-prog').style.display = "grid"
 
-    if (classButton[i].classList.contains('paladin')) {
+    if (cButton.classList.contains('paladin')) {
         player1.getClassTitle(newPal)
         player1.powerGet(newPal)
 
         console.log(newPal)
 
         
-    } else if (classButton[i].classList.contains('archer')) {
+    } else if (cButton.classList.contains('archer')) {
         player2.getClassTitle(newArc)
         player2.powerGet(newArc)
         console.log(newArc)
 
-    } else if (classButton[i].classList.contains('rogue')) {
+    } else if (cButton.classList.contains('rogue')) {
         player3.getClassTitle(newRog)
         player3.powerGet(newRog)
         console.log(newRog)
 
-    } else if (classButton[i].classList.contains('wizard')) {
+    } else if (cButton.classList.contains('wizard')) {
         player4.getClassTitle(newWiz)
         player4.powerGet(newWiz)
         console.log(newWiz)
@@ -338,11 +383,11 @@ for (let i = 0; i < classButton.length; i++) {
 
     }
     })
-}
+})
 
 
 
-//USE POWER
+// USE POWER
 power.addEventListener('click', () => {
     if (trapCheck === false) {
         if (power.innerHTML === 'Divine Blessing') {
@@ -373,3 +418,5 @@ power.addEventListener('click', () => {
         }
     }
 })
+
+
