@@ -110,34 +110,64 @@ const phaseCheck = () => {
 //TRAP PHASE
 const trapPhase = () => {
     trapCheck = true 
-    Array.from(itemButton).forEach((iButton) => {
-        iButton.addEventListener('click', () => { 
-        if (iButton.classList.contains('rock')) {
-            alert(`It's just a donut. You're safe.`)
-            newEnemyAppears()
-        
-        } else if (iButton.classList.contains('tonic')) {
-            alert(`The TONIC OF FORGETFULNESS makes your mind hazy. You may have difficulty remembering choices.`)
-            tonicStatus = true
-            console.log(tonicStatus)
-            newEnemyAppears()
+
+    pickRock.addEventListener('click', rockTrap = () => {
+        alert(`It's just a donut. You're safe.`)
+        pickRock.removeEventListener('click', rockTrap)
+        pickTonic.removeEventListener('click', tonicTrap)
+        newEnemyAppears()
+    })
+
+    pickTonic.addEventListener('click', tonicTrap = () => {
+        alert(`The TONIC OF FORGETFULNESS makes your mind hazy. You may have difficulty remembering choices.`)
+        tonicStatus = true
+        console.log(tonicStatus)
+        pickRock.removeEventListener('click', rockTrap)
+        pickTonic.removeEventListener('click', tonicTrap)
+        newEnemyAppears()
     
-        } else if (iButton.classList.contains('cloak')) {
-            alert(`The CLOAK OF ENERGY DAMPENING smothers your senses. Your powers are out of reach, for now.`)
-            cloakStatus = true
-            newEnemyAppears()
-                
-        } else if (iButton.classList.contains('goblet')) {
-            alert(`Drinking out of the POISONED GOBLET was not a good idea. You feel yourself grow weak.`)
-            gobletStatus = true
-            newEnemyAppears()  
-        } 
+    })
 
 
-        })
+    pickCloak.addEventListener('click', cloakTrap = () => {
 
     })
+
+
+    pickTonic.addEventListener('click', tonicTrap = () => {
+
+    
+    })
+
+    // Array.from(itemButton).forEach((iButton) => {
+    //     iButton.addEventListener('click', trapEngage = () => { 
+    //     if (iButton.classList.contains('rock')) {
+    //         alert(`It's just a donut. You're safe.`)
+    //         newEnemyAppears()
+
+    //     } else if (iButton.classList.contains('tonic')) {
+    //         alert(`The TONIC OF FORGETFULNESS makes your mind hazy. You may have difficulty remembering choices.`)
+    //         tonicStatus = true
+    //         console.log(tonicStatus)
+    //         newEnemyAppears()
+    
+    //     } else if (iButton.classList.contains('cloak')) {
+    //         alert(`The CLOAK OF ENERGY DAMPENING smothers your senses. Your powers are out of reach, for now.`) 
+    //         cloakStatus = true
+    //         newEnemyAppears()
+                
+    //     } else if (iButton.classList.contains('goblet')) {
+    //         alert(`Drinking out of the POISONED GOBLET was not a good idea. You feel yourself grow weak.`)
+    //         gobletStatus = true
+    //         newEnemyAppears()  
+    //     } 
+
+
+    //     })
+        
+    // })
 }
+
 
 
 
@@ -153,15 +183,15 @@ const trapPenalty = () => {
         console.log(hideAnswer)
         console.log(roundCount)
 
-    } else if (cloakStatus === true) {
-        power.style.display = "none"
-        roundCount = roundCount + 1
-        console.log(roundCount)
+    // } else if (cloakStatus === true) {
+    //     power.style.display = "none"
+    //     roundCount = roundCount + 1
+    //     console.log(roundCount)
 
-    } else if (gobletStatus === true) {
-        Player.health--
-        roundCount = roundCount + 1
-        console.log(roundCount)
+    // } else if (gobletStatus === true) {
+    //     Player.health--
+    //     roundCount = roundCount + 1
+    //     console.log(roundCount)
 
     }
 }
@@ -169,7 +199,7 @@ const trapPenalty = () => {
 
 
 const trapDuration = () => {
-    if (roundCount === 3) {
+    if (roundCount === 2) {
     trapClear()
     }
 }
@@ -178,6 +208,11 @@ const trapClear = () => {
     tonicStatus = false
     cloakStatus = false
     gobletStatus = false
+    ans1.style.display = ""
+    ans2.style.display = ""
+    ans3.style.display = ""
+    ans4.style.display = ""
+    power.style.display = ""
     roundCount = 0
 
 }
