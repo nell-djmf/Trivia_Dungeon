@@ -28,12 +28,14 @@ const pickGoblet = document.querySelector('.goblet')
 
 //GAME STATUS
 let gameProgress = "="
-let roundCount = 0
 let trapCheck = false
 
 let tonicStatus = false
 let cloakStatus = false
 let gobletStatus = false
+let tonicRoundCount = 0
+let cloakRoundCount = 0
+let gobletRoundCount = 0
 
 //ANSWER BOX HTML ELEMENTS
 let answers = Array.from(document.getElementsByClassName('answer-choice'))
@@ -115,6 +117,8 @@ const trapPhase = () => {
         alert(`It's just a donut. You're safe.`)
         pickRock.removeEventListener('click', rockTrap)
         pickTonic.removeEventListener('click', tonicTrap)
+        pickCloak.removeEventListener('click', cloakTrap)
+        pickGoblet.removeEventListener('click', gobletTrap)
         newEnemyAppears()
     })
 
@@ -124,48 +128,35 @@ const trapPhase = () => {
         console.log(tonicStatus)
         pickRock.removeEventListener('click', rockTrap)
         pickTonic.removeEventListener('click', tonicTrap)
+        pickCloak.removeEventListener('click', cloakTrap)
+        pickGoblet.removeEventListener('click', gobletTrap)
         newEnemyAppears()
     
     })
 
 
     pickCloak.addEventListener('click', cloakTrap = () => {
-
+        alert(`The CLOAK OF ENERGY DAMPENING smothers your senses. Your powers are out of reach, for now.`) 
+        cloakStatus = true
+        pickRock.removeEventListener('click', rockTrap)
+        pickTonic.removeEventListener('click', tonicTrap)
+        pickCloak.removeEventListener('click', cloakTrap)
+        pickGoblet.removeEventListener('click', gobletTrap)
+        newEnemyAppears()
     })
 
 
-    pickTonic.addEventListener('click', tonicTrap = () => {
-
+    pickGoblet.addEventListener('click', gobletTrap = () => {
+        alert(`Drinking out of the POISONED GOBLET was not a good idea. You feel yourself grow weak.`)
+        gobletStatus = true
+        pickRock.removeEventListener('click', rockTrap)
+        pickTonic.removeEventListener('click', tonicTrap)
+        pickCloak.removeEventListener('click', cloakTrap)
+        pickGoblet.removeEventListener('click', gobletTrap)
+        newEnemyAppears()  
     
     })
 
-    // Array.from(itemButton).forEach((iButton) => {
-    //     iButton.addEventListener('click', trapEngage = () => { 
-    //     if (iButton.classList.contains('rock')) {
-    //         alert(`It's just a donut. You're safe.`)
-    //         newEnemyAppears()
-
-    //     } else if (iButton.classList.contains('tonic')) {
-    //         alert(`The TONIC OF FORGETFULNESS makes your mind hazy. You may have difficulty remembering choices.`)
-    //         tonicStatus = true
-    //         console.log(tonicStatus)
-    //         newEnemyAppears()
-    
-    //     } else if (iButton.classList.contains('cloak')) {
-    //         alert(`The CLOAK OF ENERGY DAMPENING smothers your senses. Your powers are out of reach, for now.`) 
-    //         cloakStatus = true
-    //         newEnemyAppears()
-                
-    //     } else if (iButton.classList.contains('goblet')) {
-    //         alert(`Drinking out of the POISONED GOBLET was not a good idea. You feel yourself grow weak.`)
-    //         gobletStatus = true
-    //         newEnemyAppears()  
-    //     } 
-
-
-    //     })
-        
-    // })
 }
 
 
@@ -175,23 +166,25 @@ const trapPhase = () => {
 
 
 //TRAP PENALTIES
+
+
 const trapPenalty = () => {
     if (tonicStatus === true) {
         let hideAnswer = Math.floor(Math.random() * answers.length)
         answers[hideAnswer].style.display = "none"
-        roundCount = roundCount + 1
-        console.log(hideAnswer)
-        console.log(roundCount)
+        tonicRoundCount = tonicRoundCount + 1
 
-    // } else if (cloakStatus === true) {
-    //     power.style.display = "none"
-    //     roundCount = roundCount + 1
-    //     console.log(roundCount)
 
-    // } else if (gobletStatus === true) {
-    //     Player.health--
-    //     roundCount = roundCount + 1
-    //     console.log(roundCount)
+    } else if (cloakStatus === true) {
+        power.style.display = "none"
+        cloakRoundCount = cloakRoundCount + 1
+
+
+    } else if (gobletStatus === true) {
+        Player.health = Player.health - 5
+        hpAmount.innerHTML = Player.health
+        gobletRoundCount = gobletRoundCount + 1
+
 
     }
 }
@@ -199,8 +192,16 @@ const trapPenalty = () => {
 
 
 const trapDuration = () => {
-    if (roundCount === 2) {
-    trapClear()
+    if (tonicRoundCount === 3) {
+        trapClear()
+    }
+
+    if (cloakRoundCount === 3) {
+        trapClear()
+    }
+
+    if (gobletRoundCount === 3) {
+        trapClear()
     }
 }
     
@@ -230,13 +231,20 @@ for (let i = 0; i < answers.length; i++) {
     
     } else {
         newEnemyAppears()
-        hpAmount.innerHTML = Player.health--
+        damageTaken()
+        hpAmount.innerHTML = Player.health
         console.log('wrong')
         dungeonExit()
         trapPhase()
     }
     })
 }
+
+//INCORRECT ANSWER PENALTY
+const damageTaken = () => {
+    Player.health = Player.health - 10
+}
+
 
 
 //GAME CONDITIONS
@@ -245,14 +253,14 @@ const dungeonExit = () => {
         alert('You win! Press ok to play again')
         gameProgress = "="
         gameProgress.innerHTML = gameProgress
-        Player.health = 10
+        Player.health = 100
         hpAmount.innerHTML = Player.health
         trapClear()
     } else if (Player.health < 0) {
         alert('You died. Press ok to play again')
         gameProgress = "="
         gameProgress.innerHTML = gameProgress
-        Player.health = 10
+        Player.health = 100
         hpAmount.innerHTML = Player.health
         trapClear()
 
@@ -266,7 +274,7 @@ const dungeonExit = () => {
 class Player {
     constructor (name, powerUse, health, powerName) {
         this.name = name
-        this.health = 10
+        this.health = 100
         this.powerUse = 0
         this.powerName = powerName
     }
@@ -282,7 +290,7 @@ class Player {
 
 }
 
-Player.health = 10
+Player.health = 100
 
 
 
