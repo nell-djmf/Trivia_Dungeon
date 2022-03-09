@@ -1,7 +1,8 @@
 
 body {
     background-color: black;
-    background-image: url('https://i.imgur.com/atJgpbi.jpg');
+    background-image: url('https://i.imgur.com/KDAu4WB.jpg');
+    background-size: cover;
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -28,9 +29,30 @@ body {
     font-family: 'Press Start 2P', cursive;
 }
 
-.enter {
+.button {
     grid-area: b;
-    width: 25%;
+    width: 80%;
     height: 50px;
     margin: auto;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 25px;
+
 }
+ 
+a {
+    text-decoration: none;
+    color: white;
+    animation: 2s linear infinite blink;
+}
+
+@keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+  
+    50% {
+      opacity: 0;
+    }
+}
+  

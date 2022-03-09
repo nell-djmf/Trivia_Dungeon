@@ -1,5 +1,7 @@
 body {
     background-color: black;
+    background-image: url('https://i.imgur.com/SaAUH43.jpg');
+    background-repeat: no-repeat;
     color: white;
     text-align: center;
 
@@ -11,12 +13,13 @@ body {
 .class-picker-container {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr 1fr; 
-    grid-template-rows: 1fr; 
+    grid-template-rows: 1fr 1fr; 
     gap: 0px 0px; 
     grid-template-areas: 
-    "a b c d"; 
+      "a a a a"
+      "b c d e"; 
     width: 800px; 
-    height: 200px; 
+    height: 400px; 
     margin: auto;
     position: absolute;
     top: 0;
@@ -29,16 +32,23 @@ span.icon {
     font-size: 40px;
 }
 
+.choose {
+    grid-area: a;
+    font-size: 40px;
+    font-family: 'Press Start 2P', cursive;
+}
+
 .paladin-wrapper {
     background-color: pink;
-    grid-area: a;
+    grid-area: b;
     justify-content: center;
     align-items: center;
+    font-family: 'Press Start 2P', cursive;
 
 }
 
 .paladin {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.5);
     height: 100px;
     width: 100px;
 }
@@ -46,40 +56,43 @@ span.icon {
 
 .archer-wrapper {
     background-color: lightgreen;
-    grid-area: b;
+    grid-area: c;
     justify-content: center;
     align-items: center;
+    font-family: 'Press Start 2P', cursive;
     
 }
 
 .archer {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.5);
     height: 100px;
     width: 100px;
 }
 
 .rogue-wrapper {
     background-color: goldenrod;
-    grid-area: c;
+    grid-area: d;
     justify-content: center;
     align-items: center;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .rogue {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.5);
     height: 100px;
     width: 100px;
 }
 
 .wizard-wrapper {
     background-color: lightseagreen;
-    grid-area: d;
+    grid-area: e;
     justify-content: center;
     align-items: center;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .wizard {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.5);
     height: 100px;
     width: 100px;
     font-size: 20px;
@@ -92,33 +105,46 @@ span.icon {
     grid-auto-columns: 1fr; 
     grid-template-columns: 1fr; 
     grid-template-rows: 0.4fr 1.7fr 1.6fr 1fr; 
-    gap: 0px 5px; 
     grid-template-areas: 
     "a"
     "b"
     "c"
     "d"; 
     width: 800px; 
+    height: 600px;
     justify-content: center;
     align-content: center;
-    margin: auto; 
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    top: 15%;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 
 .category {
     grid-area: a;
-    background-color: blue;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 25px 50px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .question {
     grid-area: b;
     font-size: 25px;
-    background-color: gray;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 70px 50px;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 35px;
 }
 
 .answers {
     grid-area: c;
-    background-color: darkmagenta;
+    background-color: rgba(0, 0, 0, 0.5);
     display: none; 
     grid-auto-columns: 1fr; 
     grid-template-columns: 1fr 1fr; 
@@ -127,35 +153,56 @@ span.icon {
       "a b"
       "c d"; 
     width: 800px;
+    height: 200px;
     justify-content: center;
     align-content: center;
+
 }
 
 .ans1 {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
     grid-area: a;
+    font-family: 'VT323', monospace;
+    font-size: 35px;
+    
 }
 
 .ans2 {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
     grid-area: b;
+    font-family: 'VT323', monospace;
+    font-size: 35px;
 }
 
 .ans3 {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
     grid-area: c;
+    font-family: 'VT323', monospace;
+    font-size: 35px;
 }
 
 .ans4 {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
     grid-area: d;
+    font-family: 'VT323', monospace;
+    font-size: 35px;
     
 }
 
 
 .dungeon-prog {
     grid-area: d;
-    background-color: darkcyan;
+    background-color: rgba(0, 0, 0, 0.5);
     display: none; 
     grid-template-columns: 0.7fr 0.8fr 1.5fr; 
     grid-template-rows: 1fr 0.4fr 1.2fr; 
     gap: 0px 0px; 
+    width: 800px; 
+    height: 200px;
     grid-template-areas: 
       "a a c"
       "b b c"
@@ -165,29 +212,49 @@ span.icon {
 
 .progress {
     grid-area: a;
+    font-family: 'Press Start 2P', cursive;
+    justify-content: center;
+    align-content: center;
 }
 
 .prog-bar {
-    grid-area: b; 
+    grid-area: b;
+    font-family: 'VT323', monospace;
+    font-size: 35px;
 }
 
 .power-title {
     grid-area: c;
+    font-family: 'Press Start 2P', cursive;
+    justify-content: center;
+    align-content: center;
 }
 
 .powers {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
     grid-area: d;
+    font-family: 'VT323', monospace;
+    font-size: 35px;
 }
 
 .HP {
     grid-area: e;
-    background-color: darkgreen;
-   
+    font-family: 'Press Start 2P', cursive;
+
+    justify-content: center;
+    align-content: center;
+    text-align: right;
 }
 
 .HP-amount {
     grid-area: f;
-    background-color: darkgreen;
+    font-family: 'Press Start 2P', cursive;
+
+    justify-content: center;
+    align-content: center;
+    text-align: left;
+
 }
 
 
@@ -220,11 +287,13 @@ span.item {
     grid-area: a;
     justify-content: center;
     align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    
 
 }
 
 .rock {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.5);
     height: 100px;
     width: 100px;
 }
@@ -235,11 +304,12 @@ span.item {
     grid-area: b;
     justify-content: center;
     align-items: center;
+    font-family: 'Press Start 2P', cursive;
     
 }
 
 .tonic {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.5);
     height: 100px;
     width: 100px;
 }
@@ -249,10 +319,11 @@ span.item {
     grid-area: c;
     justify-content: center;
     align-items: center;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .cloak {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.5);
     height: 100px;
     width: 100px;
 }
@@ -262,10 +333,11 @@ span.item {
     grid-area: d;
     justify-content: center;
     align-items: center;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .goblet {
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.5);
     height: 100px;
     width: 100px;
     font-size: 20px;
