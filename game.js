@@ -131,7 +131,6 @@ const trapPhase = () => {
     pickTonic.addEventListener('click', tonicTrap = () => {
         alert(`The TONIC OF FORGETFULNESS makes your mind hazy. You may have difficulty remembering choices.`)
         tonicStatus = true
-        console.log(tonicStatus)
         pickRock.removeEventListener('click', rockTrap)
         pickTonic.removeEventListener('click', tonicTrap)
         pickCloak.removeEventListener('click', cloakTrap)

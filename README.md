@@ -60,6 +60,13 @@ Choose your toolkit carefully! Your powers may be the difference between life an
 
 <!-- ![A master of the arcane](https://i.imgur.com/pg1Ptbn.png) -->
 
+
+***
+### **Known Bugs:**
+
+*Rarely, the Tonic of Forgetfulness will not remove random answers. i have not been able to replicate this reliably.*
+
+
 ***
 
 ## **Credits:**
