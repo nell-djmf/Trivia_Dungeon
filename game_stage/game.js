@@ -67,6 +67,8 @@ const newEnemyAppears = async () => {
 
     question.innerHTML = showQuestion
 
+    progress.innerHTML = gameProgress
+
     ans1.innerHTML = showAnswer1
     ans2.innerHTML = showAnswer2
     ans3.innerHTML = showAnswer3
@@ -78,6 +80,7 @@ const newEnemyAppears = async () => {
     document.querySelector(".ans4").style.display = ""
     
     phaseCheck()
+    dungeonExit()
     trapPenalty()
     trapDuration()
     // console.log(showQuestion)
@@ -225,6 +228,7 @@ for (let i = 0; i < answers.length; i++) {
         dungeonExit()
     
     } else {
+        progress.innerHTML = gameProgress
         newEnemyAppears()
         damageTaken()
         hpAmount.value = Player.health
@@ -325,6 +329,7 @@ class Archer extends Player {
     
     lightningReflexes() {
         newEnemyAppears()
+        phaseCheck()
         this.powerUse = this.powerUse + 1
         if (this.powerUse === 2) {
             power.style.display = "none"
@@ -366,13 +371,8 @@ class Wizard extends Player {
     }
     
     chronomancer() {
-        document.querySelector('.category').style.display = ""
-        document.querySelector('.answers').style.display = "grid"
-        document.querySelector('.question').style.display = ""
-        document.querySelector('.new-encounter').style.display = ""
-        document.querySelector('.trap-container').style.display = "none"
-        trapCheck = false
         newEnemyAppears()
+        phaseCheck()
         this.powerUse = this.powerUse + 1
         if (this.powerUse === 2) {
             power.style.display = "none"
