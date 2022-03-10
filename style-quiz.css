@@ -1,7 +1,8 @@
 body {
     background-color: black;
-    background-image: url('https://i.imgur.com/SaAUH43.jpg');
+    background-image: url('https://i.imgur.com/nK0vdiB.jpg');
     background-repeat: no-repeat;
+    background-size: cover;
     color: white;
     text-align: center;
 
@@ -29,9 +30,6 @@ body {
     right: 0;
 }
 
-span.item {
-    font-size: 40px;
-}
 
 .choose {
     grid-area: a;
@@ -40,8 +38,9 @@ span.item {
 }
 
 .paladin-wrapper {
-    background-color: #820F0D;
+    background-color: rgba(130, 15, 13, 0.75);
     grid-area: b;
+    border: 1px solid grey;
     justify-content: center;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
@@ -50,13 +49,15 @@ span.item {
 
 .paladin {
     background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(https://svgshare.com/i/f45.svg);
     height: 100px;
     width: 100px;
 }
 
 .archer-wrapper {
-    background-color: #0F461E;
+    background-color: rgba(15, 70, 30, 0.75);
     grid-area: c;
+    border: 1px solid grey;
     justify-content: center;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
@@ -64,14 +65,16 @@ span.item {
 }
 
 .archer {
+    background-image: url(https://svgshare.com/i/f2i.svg);
     background-color: rgba(0, 0, 0, 0.5);
     height: 100px;
     width: 100px;
 }
 
 .rogue-wrapper {
-    background-color: #1C2783;
+    background-color: rgba(28, 39, 131, 0.75);
     grid-area: d;
+    border: 1px solid grey;
     justify-content: center;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
@@ -79,13 +82,15 @@ span.item {
 
 .rogue {
     background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(https://svgshare.com/i/f2j.svg);
     height: 100px;
     width: 100px;
 }
 
 .wizard-wrapper {
-    background-color: #5D1991;
+    background-color: rgba(93, 25, 145, 0.75);
     grid-area: e;
+    border: 1px solid grey;
     justify-content: center;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
@@ -93,6 +98,7 @@ span.item {
 
 .wizard {
     background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(https://svgshare.com/i/f3n.svg);
     height: 100px;
     width: 100px;
     font-size: 20px;
@@ -188,11 +194,11 @@ span.item {
 .combat-log-wrapper {
     display: none;
     grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 0.4fr 0.3fr 2.3fr; 
+    grid-template-rows: 0.3fr 0.4fr 2.3fr; 
     gap: 0px 0px; 
     grid-template-areas: 
-      "a a"
-      "b c"
+      "a b"
+      "c c"
       "d d"; 
     width: 200px; 
     height: 400px; 
@@ -201,13 +207,9 @@ span.item {
     right: 5%;
 }
 
-.combat-log-title {
-    grid-area: a;
-    font-family: 'Press Start 2P', cursive;
-}
 
 .return-class-pick {
-    grid-area: b;
+    grid-area: a;
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid grey;
     color: white;
@@ -217,13 +219,18 @@ span.item {
 }
 
 .return-dungeon-start {
-    grid-area: c;
+    grid-area: b;
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid grey;
     color: white;
     padding: 10px 15px;
     text-decoration: none;
     font-family: 'VT323', monospace;
+}
+
+.combat-log-title {
+    grid-area: c;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .combat-log {
@@ -396,6 +403,8 @@ span.item {
 
 }
 
+
+
 /* TRAP PHASE */
 
 
@@ -429,8 +438,9 @@ span.item {
 }
 
 .rock-wrapper {
-    background-color: #96165D;
+    background-color: rgba(150, 22, 93, 0.75);
     grid-area: b;
+    border: 1px solid grey;
     justify-content: center;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
@@ -440,14 +450,16 @@ span.item {
 
 .rock {
     background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(https://svgshare.com/i/f4c.svg);
     height: 100px;
     width: 100px;
 }
 
 
 .tonic-wrapper {
-    background-color: #1B8064;
+    background-color: rgba(179, 117, 24, 0.75);
     grid-area: c;
+    border: 1px solid grey;
     justify-content: center;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
@@ -456,13 +468,15 @@ span.item {
 
 .tonic {
     background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(https://svgshare.com/i/f29.svg);
     height: 100px;
     width: 100px;
 }
 
 .cloak-wrapper {
-    background-color: #175C7D;
+    background-color: rgba(23, 92, 125, 0.75);
     grid-area: d;
+    border: 1px solid grey;
     justify-content: center;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
@@ -470,13 +484,15 @@ span.item {
 
 .cloak {
     background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(https://svgshare.com/i/f3o.svg);
     height: 100px;
     width: 100px;
 }
 
 .goblet-wrapper {
-    background-color: #5E7D17;
+    background-color: rgba(94, 125, 23, 0.75);
     grid-area: e;
+    border: 1px solid grey;
     justify-content: center;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
@@ -484,6 +500,7 @@ span.item {
 
 .goblet {
     background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(https://svgshare.com/i/f3w.svg);
     height: 100px;
     width: 100px;
     font-size: 20px;

@@ -60,6 +60,20 @@ Choose your toolkit carefully! Your powers may be the difference between life an
 
 <!-- ![A master of the arcane](https://i.imgur.com/pg1Ptbn.png) -->
 
+***
 
+## **Credits:**
+
+Class & Trap Icons (Game): [openmoji](https://openmoji.org/library/)
+
+Class Icons (Readme): [github](https://github.com/ikatyang/emoji-cheat-sheet)
+
+Background Images: [imgur album](https://imgur.com/a/ppH2Y) from the game [Darkest Dungeon](https://www.darkestdungeon.com/)
+
+Image Hosting: [svgur](https://svgur.com/) [imgur](https://imgur.com/)
+
+Trivia Questions: [Open Trivia Database](https://opentdb.com/)
+
+HTML Element Shuffle (used in game.js, line 96): [StackOverflow](https://stackoverflow.com/questions/7070054/javascript-shuffle-html-list-element-order)
 
 

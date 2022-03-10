@@ -85,13 +85,9 @@ const newEnemyAppears = async () => {
     dungeonExit()
     trapPenalty()
     trapDuration()
-    // console.log(showQuestion)
-    // console.log(showAnswer1)
-    // console.log(showAnswer2)
-    // console.log(response)
-    
 }
 
+//Shuffle Answer HTML Elements
 const shuffle = () => {
     let shuffleAnswers = document.querySelector('.answers')
     for (let i = shuffleAnswers.children.length; i >= 0; i--) {
@@ -124,7 +120,7 @@ const trapPhase = () => {
     trapCheck = true 
 
     pickRock.addEventListener('click', rockTrap = () => {
-        alert(`It's just a donut. You're safe.`)
+        alert(`It's just a rock... You're safe.`)
         pickRock.removeEventListener('click', rockTrap)
         pickTonic.removeEventListener('click', tonicTrap)
         pickCloak.removeEventListener('click', cloakTrap)
@@ -316,7 +312,7 @@ class Paladin extends Player {
         this.name = name
         this.powerName = "Divine Blessing"
         this.powerUse = 0
-        this.powerColor = "#820F0D"
+        this.powerColor = "rgba(130, 15, 13, 0.75)"
   
     }
     
@@ -337,7 +333,7 @@ class Archer extends Player {
         this.name = name
         this.powerName = "Lightning Reflexes"
         this.powerUse = 0
-        this.powerColor = "#0F461E"
+        this.powerColor = "rgba(15, 70, 30, 0.75)"
 
         
     }
@@ -359,7 +355,7 @@ class Rogue extends Player {
         this.name = name
         this.powerName = "Trap Sense"
         this.powerUse = 0
-        this.powerColor = "#1C2783"
+        this.powerColor = "rgba(28, 39, 131, 0.75"
 
         
     }
@@ -381,7 +377,7 @@ class Wizard extends Player {
         this.name = name
         this.powerName = "Chronomancer"
         this.powerUse = 0
-        this.powerColor = "#5D1991"
+        this.powerColor = "rgba(93, 25, 145, 0.75)"
 
     }
     
@@ -396,16 +392,16 @@ class Wizard extends Player {
 
 }
 //CLASS CONSTANTS
-const player1 = new Player('PALADIN', 0, 10, 'Divine Blessing', "#820F0D")
+const player1 = new Player('PALADIN', 0, 10, 'Divine Blessing', "rgba(130, 15, 13, 0.75)")
 const newPal = new Paladin('PALADIN')
 
-const player2 = new Player('ARCHER', 0, 10, 'Lightning Reflexes', "#0F461E")
+const player2 = new Player('ARCHER', 0, 10, 'Lightning Reflexes', "rgba(15, 70, 30, 0.75)")
 const newArc = new Archer('ARCHER')
 
-const player3 = new Player('ROGUE', 0, 10, 'Trap Sense', "#1C2783")
+const player3 = new Player('ROGUE', 0, 10, 'Trap Sense', "rgba(28, 39, 131, 0.75")
 const newRog = new Rogue('ROGUE')
 
-const player4 = new Player('WIZARD', 0, 10, 'Chronomancer', "#5D1991")
+const player4 = new Player('WIZARD', 0, 10, 'Chronomancer', "rgba(93, 25, 145, 0.75)")
 const newWiz = new Wizard('WIZARD')
 
 //SET CLASS
