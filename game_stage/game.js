@@ -15,7 +15,7 @@ const category = document.querySelector('.category')
 const question = document.getElementsByClassName('question')[0]
 const progress = document.querySelector('.prog-bar')
 const power = document.querySelector('.powers')
-const hpAmount = document.querySelector(".HP-amount")
+const hpAmount = document.getElementById('HP-amount')
 const classTitle = document.querySelector('.power-title')
 
 //GET TRAP HTML ELEMENTS
@@ -178,7 +178,7 @@ const trapPenalty = () => {
 
     } else if (gobletStatus === true) {
         Player.health = Player.health - 5
-        hpAmount.innerHTML = Player.health
+        hpAmount.value = Player.health
         gobletRoundCount = gobletRoundCount + 1
 
 
@@ -228,7 +228,7 @@ for (let i = 0; i < answers.length; i++) {
     } else {
         newEnemyAppears()
         damageTaken()
-        hpAmount.innerHTML = Player.health
+        hpAmount.value = Player.health
         console.log('wrong')
         dungeonExit()
         trapPhase()
@@ -250,14 +250,14 @@ const dungeonExit = () => {
         gameProgress = "="
         gameProgress.innerHTML = gameProgress
         Player.health = 100
-        hpAmount.innerHTML = Player.health
+        hpAmount.value = Player.health
         trapClear()
     } else if (Player.health < 0) {
         alert('You died. Press ok to play again')
         gameProgress = "="
         gameProgress.innerHTML = gameProgress
         Player.health = 100
-        hpAmount.innerHTML = Player.health
+        hpAmount.value = Player.health
         trapClear()
 
     }
@@ -268,15 +268,18 @@ const dungeonExit = () => {
 //CLASSES
 
 class Player {
-    constructor (name, powerUse, health, powerName) {
+    constructor (name, powerUse, health, powerName, powerColor) {
         this.name = name
         this.health = 100
         this.powerUse = 0
         this.powerName = powerName
+        this.powerColor = powerColor
     }
     
     powerGet() {
         power.innerHTML = this.powerName
+        power.style.backgroundColor = this.powerColor
+        console.log(this.powerName)
     }
 
     getClassTitle() {
@@ -291,11 +294,12 @@ Player.health = 100
 
 
 class Paladin extends Player {
-    constructor (name, powerName, powerUse) {
+    constructor (name, powerName, powerUse, powerColor) {
         super ()
         this.name = name
         this.powerName = "Divine Blessing"
         this.powerUse = 0
+        this.powerColor = "#820F0D"
   
     }
     
@@ -311,11 +315,12 @@ class Paladin extends Player {
 }
 
 class Archer extends Player {
-    constructor (name, powerName, powerUse) {
+    constructor (name, powerName, powerUse, powerColor) {
         super ()
         this.name = name
         this.powerName = "Lightning Reflexes"
         this.powerUse = 0
+        this.powerColor = "#0F461E"
 
         
     }
@@ -331,11 +336,12 @@ class Archer extends Player {
 }
 
 class Rogue extends Player {
-    constructor (name, powerName, powerUse) {
+    constructor (name, powerName, powerUse, powerColor) {
         super ()
         this.name = name
         this.powerName = "Trap Sense"
         this.powerUse = 0
+        this.powerColor = "#1C2783"
 
         
     }
@@ -352,11 +358,12 @@ class Rogue extends Player {
 }
 
 class Wizard extends Player {
-    constructor (name, powerName, powerUse) {
+    constructor (name, powerName, powerUse, powerColor) {
         super ()
         this.name = name
         this.powerName = "Chronomancer"
         this.powerUse = 0
+        this.powerColor = "#5D1991"
 
     }
     
@@ -376,16 +383,16 @@ class Wizard extends Player {
 
 }
 //CLASS CONSTANTS
-const player1 = new Player('Paladin', 0, 10, 'Divine Blessing')
+const player1 = new Player('Paladin', 0, 10, 'Divine Blessing', "#820F0D")
 const newPal = new Paladin('Paladin')
 
-const player2 = new Player('Archer', 0, 10, 'Lightning Reflexes')
+const player2 = new Player('Archer', 0, 10, 'Lightning Reflexes', "#0F461E")
 const newArc = new Archer('Archer')
 
-const player3 = new Player('Rogue', 0, 10, 'Trap Sense')
+const player3 = new Player('Rogue', 0, 10, 'Trap Sense', "#1C2783")
 const newRog = new Rogue('Rogue')
 
-const player4 = new Player('Wizard', 0, 10, 'Chronomancer')
+const player4 = new Player('Wizard', 0, 10, 'Chronomancer', "#5D1991")
 const newWiz = new Wizard('Wizard')
 
 //SET CLASS
