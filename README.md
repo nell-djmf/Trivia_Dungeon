@@ -81,6 +81,8 @@ Image Hosting: [svgur](https://svgur.com/) [imgur](https://imgur.com/)
 
 Trivia Questions: [Open Trivia Database](https://opentdb.com/)
 
+Tools for Colors: [HEX codes](https://htmlcolorcodes.com/) [HEX to RGBA](https://rgbacolorpicker.com/hex-to-rgba)
+
 HTML Element Shuffle (used in game.js, line 96): [StackOverflow](https://stackoverflow.com/questions/7070054/javascript-shuffle-html-list-element-order)
 
 
