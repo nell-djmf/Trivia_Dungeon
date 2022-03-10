@@ -17,6 +17,7 @@ const progress = document.querySelector('.prog-bar')
 const power = document.querySelector('.powers')
 const hpAmount = document.getElementById('HP-amount')
 const classTitle = document.querySelector('.power-title')
+const combatLog = document.querySelector('.combat-log')
 
 //GET TRAP HTML ELEMENTS
 const itemButton = document.getElementsByClassName('item-button')
@@ -73,6 +74,11 @@ const newEnemyAppears = async () => {
     ans2.innerHTML = showAnswer2
     ans3.innerHTML = showAnswer3
     ans4.innerHTML = showAnswer4
+
+    let shuffleAnswers = document.querySelector('.answers')
+    for (let i = shuffleAnswers.children.length; i >= 0; i--) {
+        shuffleAnswers.appendChild(shuffleAnswers.children[Math.random() * i | 0])
+    }
 
     
 
@@ -182,6 +188,7 @@ const trapPenalty = () => {
     } else if (gobletStatus === true) {
         Player.health = Player.health - 5
         hpAmount.value = Player.health
+        combatLog.innerHTML += ` \n You took 5 damage from poison. HP: ${Player.health}`
         gobletRoundCount = gobletRoundCount + 1
 
 
@@ -241,6 +248,7 @@ for (let i = 0; i < answers.length; i++) {
 //INCORRECT ANSWER PENALTY
 const damageTaken = () => {
     Player.health = Player.health - 10
+    combatLog.innerHTML += ` \n You took 10 damage from the trap. HP: ${Player.health}`
 }
 
 
@@ -253,6 +261,7 @@ const dungeonExit = () => {
         gameProgress.innerHTML = gameProgress
         Player.health = 100
         hpAmount.value = Player.health
+        combatLog.innerHTML = ""
         trapClear()
     } else if (Player.health < 0) {
         alert('You died. Press ok to play again')
@@ -260,6 +269,7 @@ const dungeonExit = () => {
         gameProgress.innerHTML = gameProgress
         Player.health = 100
         hpAmount.value = Player.health
+        combatLog.innerHTML = ""
         trapClear()
 
     }
@@ -401,6 +411,7 @@ Array.from(classButton).forEach((cButton) => {
     document.querySelector('.question-wrapper').style.display = "grid"
     document.querySelector('.answers').style.display = "grid"
     document.querySelector('.dungeon-prog').style.display = "grid"
+    document.querySelector('.combat-log-wrapper').style.display = "grid"
 
     if (cButton.classList.contains('paladin')) {
         player1.getClassTitle(newPal)

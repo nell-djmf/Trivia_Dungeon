@@ -185,6 +185,57 @@ span.item {
 
 /* GAME STAGE */
 
+.combat-log-wrapper {
+    display: none;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 0.4fr 0.3fr 2.3fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "a a"
+      "b c"
+      "d d"; 
+    width: 200px; 
+    height: 400px; 
+    position:absolute;
+    top: 5%;
+    right: 5%;
+}
+
+.combat-log-title {
+    grid-area: a;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.return-class-pick {
+    grid-area: b;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid grey;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-family: 'VT323', monospace;
+}
+
+.return-dungeon-start {
+    grid-area: c;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid grey;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-family: 'VT323', monospace;
+}
+
+.combat-log {
+    grid-area: d;
+    width: 200px;
+    text-align: left;
+    white-space: pre-wrap;
+    font-family: 'VT323', monospace;
+}
+
+
+
 .question-wrapper {
     display: none; 
     grid-auto-columns: 1fr; 
@@ -376,7 +427,7 @@ span.item {
 }
 
 .rock-wrapper {
-    background-color: pink;
+    background-color: #96165D;
     grid-area: b;
     justify-content: center;
     align-items: center;
@@ -393,7 +444,7 @@ span.item {
 
 
 .tonic-wrapper {
-    background-color: lightgreen;
+    background-color: #1B8064;
     grid-area: c;
     justify-content: center;
     align-items: center;
@@ -408,7 +459,7 @@ span.item {
 }
 
 .cloak-wrapper {
-    background-color: goldenrod;
+    background-color: #175C7D;
     grid-area: d;
     justify-content: center;
     align-items: center;
@@ -422,7 +473,7 @@ span.item {
 }
 
 .goblet-wrapper {
-    background-color: lightseagreen;
+    background-color: #5E7D17;
     grid-area: e;
     justify-content: center;
     align-items: center;
