@@ -74,17 +74,13 @@ const newEnemyAppears = async () => {
     ans2.innerHTML = showAnswer2
     ans3.innerHTML = showAnswer3
     ans4.innerHTML = showAnswer4
-
-    let shuffleAnswers = document.querySelector('.answers')
-    for (let i = shuffleAnswers.children.length; i >= 0; i--) {
-        shuffleAnswers.appendChild(shuffleAnswers.children[Math.random() * i | 0])
-    }
-
+    console.log(showAnswer1)
     
 
     document.querySelector(".ans3").style.display = ""
     document.querySelector(".ans4").style.display = ""
     
+    shuffle()
     phaseCheck()
     dungeonExit()
     trapPenalty()
@@ -96,6 +92,15 @@ const newEnemyAppears = async () => {
     
 }
 
+const shuffle = () => {
+    let shuffleAnswers = document.querySelector('.answers')
+    for (let i = shuffleAnswers.children.length; i >= 0; i--) {
+        shuffleAnswers.appendChild(shuffleAnswers.children[Math.random() * i | 0])
+    }
+
+}
+
+
 const phaseCheck = () => {
     if (trapCheck === true) {
         document.querySelector('.trap-container').style.display = "grid"
@@ -106,7 +111,7 @@ const phaseCheck = () => {
         document.querySelector(".goblet-wrapper").style.display = ""
     } else if (trapCheck === false) {
         document.querySelector('.category').style.display = ""
-        document.querySelector('.answers').style.display = "grid"
+        document.querySelector('.answers').style.display = "flex"
         document.querySelector('.question').style.display = ""
         document.querySelector('.trap-container').style.display = "none"
         
@@ -409,7 +414,7 @@ Array.from(classButton).forEach((cButton) => {
     cButton.addEventListener('click', () => {
     document.querySelector('.class-picker-container').style.display = "none"
     document.querySelector('.question-wrapper').style.display = "grid"
-    document.querySelector('.answers').style.display = "grid"
+    document.querySelector('.answers').style.display = "flex"
     document.querySelector('.dungeon-prog').style.display = "grid"
     document.querySelector('.combat-log-wrapper').style.display = "grid"
 

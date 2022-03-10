@@ -282,12 +282,10 @@ span.item {
     grid-area: c;
     background-color: rgba(0, 0, 0, 0.5);
     display: none; 
-    grid-auto-columns: 1fr; 
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 1fr 1fr; 
-    grid-template-areas: 
-      "a b"
-      "c d"; 
+    flex-direction: row;
+    flex-basis: 399px;
+    flex-wrap: wrap;
+    flex: 1;
     width: 800px;
     height: 200px;
     justify-content: center;
@@ -298,8 +296,9 @@ span.item {
 .ans1 {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    grid-area: a;
     font-family: 'VT323', monospace;
+    width: 400px;
+    height: 100px;
     font-size: 35px;
     
 }
@@ -307,24 +306,27 @@ span.item {
 .ans2 {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    grid-area: b;
     font-family: 'VT323', monospace;
+    width: 400px;
+    height: 100px;
     font-size: 35px;
 }
 
 .ans3 {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    grid-area: c;
     font-family: 'VT323', monospace;
+    width: 400px;
+    height: 100px;
     font-size: 35px;
 }
 
 .ans4 {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    grid-area: d;
     font-family: 'VT323', monospace;
+    width: 400px;
+    height: 100px;
     font-size: 35px;
     
 }
