@@ -13,13 +13,14 @@ body {
 .class-picker-container {
     display: grid; 
     grid-template-columns: 1fr 1fr 1fr 1fr; 
-    grid-template-rows: 1fr 1fr; 
+    grid-template-rows: 0.7fr 1.2fr 1.2fr; 
     gap: 0px 0px; 
     grid-template-areas: 
       "a a a a"
-      "b c d e"; 
+      "b c d e"
+      "f f f f";
     width: 800px; 
-    height: 400px; 
+    height: 500px;
     margin: auto;
     position: absolute;
     top: 0;
@@ -52,7 +53,6 @@ span.icon {
     height: 100px;
     width: 100px;
 }
-
 
 .archer-wrapper {
     background-color: #0F461E;
@@ -96,6 +96,91 @@ span.icon {
     height: 100px;
     width: 100px;
     font-size: 20px;
+}
+
+.paladin-wrapper:hover ~ .pal-info {
+    display: block;
+}
+
+.archer-wrapper:hover ~ .arc-info {
+    display: block;
+}
+
+.rogue-wrapper:hover ~ .rog-info {
+    display: block;
+}
+
+.wizard-wrapper:hover ~ .wiz-info {
+    display: block;
+}
+
+
+.pal-info {
+    display: none;
+    grid-area: f;
+}
+
+.pal-title {
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+}
+
+.pal-power-info {
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+}
+
+.arc-info {
+    display: none;
+    grid-area: f;
+}
+
+.arc-title {
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+}
+
+.arc-power-info {
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+}
+
+.rog-info {
+    display: none;
+    grid-area: f;
+}
+
+.rog-title {
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+}
+
+.rog-power-info {
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+}
+
+.wiz-info {
+    display: none;
+    grid-area: f;
+}
+
+.wiz-title {
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
+}
+
+.wiz-power-info {
+    text-align: left;
+    font-family: 'VT323', monospace;
+    font-size: 30px;
 }
 
 /* GAME STAGE */

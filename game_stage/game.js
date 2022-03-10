@@ -221,7 +221,6 @@ for (let i = 0; i < answers.length; i++) {
     if (answers[i].classList.contains('ans1')) {
         gameProgress = gameProgress + "="
         progress.innerHTML = gameProgress
-        console.log('correct')
         newEnemyAppears()
         dungeonExit()
     
@@ -229,7 +228,6 @@ for (let i = 0; i < answers.length; i++) {
         newEnemyAppears()
         damageTaken()
         hpAmount.value = Player.health
-        console.log('wrong')
         dungeonExit()
         trapPhase()
     }
@@ -279,7 +277,7 @@ class Player {
     powerGet() {
         power.innerHTML = this.powerName
         power.style.backgroundColor = this.powerColor
-        console.log(this.powerName)
+
     }
 
     getClassTitle() {
@@ -383,17 +381,17 @@ class Wizard extends Player {
 
 }
 //CLASS CONSTANTS
-const player1 = new Player('Paladin', 0, 10, 'Divine Blessing', "#820F0D")
-const newPal = new Paladin('Paladin')
+const player1 = new Player('PALADIN', 0, 10, 'Divine Blessing', "#820F0D")
+const newPal = new Paladin('PALADIN')
 
-const player2 = new Player('Archer', 0, 10, 'Lightning Reflexes', "#0F461E")
-const newArc = new Archer('Archer')
+const player2 = new Player('ARCHER', 0, 10, 'Lightning Reflexes', "#0F461E")
+const newArc = new Archer('ARCHER')
 
-const player3 = new Player('Rogue', 0, 10, 'Trap Sense', "#1C2783")
-const newRog = new Rogue('Rogue')
+const player3 = new Player('ROGUE', 0, 10, 'Trap Sense', "#1C2783")
+const newRog = new Rogue('ROGUE')
 
-const player4 = new Player('Wizard', 0, 10, 'Chronomancer', "#5D1991")
-const newWiz = new Wizard('Wizard')
+const player4 = new Player('WIZARD', 0, 10, 'Chronomancer', "#5D1991")
+const newWiz = new Wizard('WIZARD')
 
 //SET CLASS
 
@@ -408,23 +406,22 @@ Array.from(classButton).forEach((cButton) => {
         player1.getClassTitle(newPal)
         player1.powerGet(newPal)
 
-        console.log(newPal)
 
         
     } else if (cButton.classList.contains('archer')) {
         player2.getClassTitle(newArc)
         player2.powerGet(newArc)
-        console.log(newArc)
+
 
     } else if (cButton.classList.contains('rogue')) {
         player3.getClassTitle(newRog)
         player3.powerGet(newRog)
-        console.log(newRog)
+
 
     } else if (cButton.classList.contains('wizard')) {
         player4.getClassTitle(newWiz)
         player4.powerGet(newWiz)
-        console.log(newWiz)
+
 
 
     }
