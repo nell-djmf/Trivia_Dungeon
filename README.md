@@ -28,7 +28,7 @@ Powers may be used at the start of a phase. Number of uses vary per player class
 
 ***
 ### **HP**
-Players start with 100 HP. Each trap phase will inflict 10 damage. Reaching 0 will kill the player, ending the game. 
+Players start with 100 HP. For an incorrect answer, the encounter will inflict 10 damage. Reaching 0 will kill the player, ending the game. 
 ![Keep your HP above 0!](https://i.stack.imgur.com/vBDSE.png)
 
 ## **Classes**
@@ -80,7 +80,8 @@ Choose your toolkit carefully! Your powers may be the difference between life an
 ### **Known Bugs:**
 
 - *Rarely, the Tonic of Forgetfulness will not remove random answers. i have not been able to replicate this reliably.*
-- *Cloak trap status not clearing at certain points
+- *Answering incorrectly still triggers a new question (not visible because of trap room). Removing the new question function call from phaseCheck breaks the game*
+- *If you give an incorrect answer that kills you, the traps still show before starting a new game*
 
 
 ***
@@ -99,6 +100,6 @@ Trivia Questions: [Open Trivia Database](https://opentdb.com/)
 
 Tools for Colors: [HEX codes](https://htmlcolorcodes.com/) [HEX to RGBA](https://rgbacolorpicker.com/hex-to-rgba)
 
-HTML Element Shuffle (used in game.js, line 104): [StackOverflow](https://stackoverflow.com/questions/7070054/javascript-shuffle-html-list-element-order)
+HTML Element Shuffle (used in game.js, line 96): [StackOverflow](https://stackoverflow.com/questions/7070054/javascript-shuffle-html-list-element-order)
 
 

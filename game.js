@@ -31,18 +31,12 @@ const pickGoblet = document.querySelector('.goblet')
 //GAME STATUS
 let gameProgress = '='
 let trapCheck = false
-// let tonicStatus = false
-// let cloakStatus = false
-// let gobletStatus = false
-// let tonicRoundCount = 0
-// let cloakRoundCount = 0
-// let gobletRoundCount = 0
 
+//TRAP TRACKING
 let trapStatus = {
-    rockStatus: '',
-    tonicStatus: '',
-    cloakStatus: '',
-    gobletStatus: ''
+    tonicStatus: false,
+    cloakStatus: false,
+    gobletStatus: false
 }
 
 let trapRoundCount = {
@@ -62,11 +56,10 @@ const ans4 = document.querySelector('.ans4')
 //FETCH QUESTIONS
 const newEnemyAppears = async () => {
     trapCheck = false
-    console.log(trapStatus)
-    console.log(trapRoundCount)
+
     let response = await axios.get(
         `https://opentdb.com/api.php?amount=50&type=multiple`
-      )
+    )
 
     //question & category variables
     let showCategory = response.data.results[0].category
@@ -94,10 +87,8 @@ const newEnemyAppears = async () => {
     document.querySelector('.ans4').style.display = ''
     
     shuffle()
-    phaseCheck()
     dungeonExit()
-    console.log(showAnswer1)
-
+    phaseCheck()
 }
 
 
@@ -107,7 +98,6 @@ const shuffle = () => {
     for (let i = shuffleAnswers.children.length; i >= 0; i--) {
         shuffleAnswers.appendChild(shuffleAnswers.children[Math.random() * i | 0])
     }
-
 }
 
 
@@ -120,6 +110,7 @@ const phaseCheck = () => {
         document.querySelector('.question').style.display = 'none'
         document.querySelector('.cloak-wrapper').style.display = ''
         document.querySelector('.goblet-wrapper').style.display = ''
+        
     } else if (trapCheck === false) {
         document.querySelector('.category').style.display = ''
         document.querySelector('.answers').style.display = 'flex'
@@ -148,7 +139,7 @@ const trapPhase = () => {
 
     pickTonic.addEventListener('click', tonicTrap = () => {
         alert(`The TONIC OF FORGETFULNESS makes your mind hazy. You may have difficulty remembering choices.`)
-        trapStatus.tonicStatus = 'true'
+        trapStatus.tonicStatus = true
         pickRock.removeEventListener('click', rockTrap)
         pickTonic.removeEventListener('click', tonicTrap)
         pickCloak.removeEventListener('click', cloakTrap)
@@ -160,7 +151,7 @@ const trapPhase = () => {
 
     pickCloak.addEventListener('click', cloakTrap = () => {
         alert(`The CLOAK OF ENERGY DAMPENING smothers your senses. Your powers are out of reach, for now.`) 
-        trapStatus.cloakStatus = 'true'
+        trapStatus.cloakStatus = true
         pickRock.removeEventListener('click', rockTrap)
         pickTonic.removeEventListener('click', tonicTrap)
         pickCloak.removeEventListener('click', cloakTrap)
@@ -171,32 +162,30 @@ const trapPhase = () => {
 
     pickGoblet.addEventListener('click', gobletTrap = () => {
         alert(`Drinking out of the POISONED GOBLET was not a good idea. You feel yourself grow weak.`)
-        trapStatus.gobletStatus = 'true'
+        trapStatus.gobletStatus = true
         pickRock.removeEventListener('click', rockTrap)
         pickTonic.removeEventListener('click', tonicTrap)
         pickCloak.removeEventListener('click', cloakTrap)
         pickGoblet.removeEventListener('click', gobletTrap)
         newEnemyAppears()  
-    
     })
-
 }
 
 
 //TRAP PENALTIES
 const trapPenalty = () => {
-    if (trapStatus.tonicStatus === 'true') {
+    if (trapStatus.tonicStatus === true) {
         let hideAnswer = Math.floor(Math.random() * answers.length)
         answers[hideAnswer].style.display = 'none'
         trapRoundCount.tonicRoundCount += 1
     } 
     
-    if (trapStatus.cloakStatus === 'true') {
+    if (trapStatus.cloakStatus === true) {
         power.style.display = 'none'
         trapRoundCount.cloakRoundCount += 1
     } 
     
-    if (trapStatus.gobletStatus === 'true') {
+    if (trapStatus.gobletStatus === true) {
         Player.health = Player.health - 5
         hpAmount.value = Player.health
         combatLog.innerHTML += ` \n You took 5 damage from poison. HP: ${Player.health}`
@@ -220,26 +209,26 @@ const trapDuration = () => {
 
    
 const tonicTrapClear = () => {
-    trapStatus.tonicStatus = ''
+    trapStatus.tonicStatus = false
     ans1.style.display = ''
     ans2.style.display = ''
     ans3.style.display = ''
     ans4.style.display = ''
     trapRoundCount.tonicRoundCount = 0
-
+    combatLog.innerHTML += ` \n The tonic's effect ends, your mind clears.`
 }
 
 const cloakTrapClear = () => {
-    trapStatus.cloakStatus = ''
+    trapStatus.cloakStatus = false
     power.style.display = ''
     trapRoundCount.cloakRoundCount = 0
-    
+    combatLog.innerHTML += ` \n The cloak's magic wanes, your powers return.`
 }
 
 const gobletTrapClear = () => {
-    trapStatus.gobletStatus = ''
+    trapStatus.gobletStatus = false
     trapRoundCount.gobletRoundCount = 0
-    
+    combatLog.innerHTML += ` \n The poison leaves your body, your sickness fades.`
 }
 
 
@@ -251,7 +240,10 @@ for (let i = 0; i < answers.length; i++) {
         progress.innerHTML = gameProgress
         newEnemyAppears()
         dungeonExit()
-    
+
+    } else if (Player.health <= 0) {
+        dungeonExit()
+
     } else {
         progress.innerHTML = gameProgress
         newEnemyAppears()
@@ -261,6 +253,7 @@ for (let i = 0; i < answers.length; i++) {
         trapPhase()
         trapPenalty()
     }
+
     })
 }
 
@@ -268,7 +261,7 @@ for (let i = 0; i < answers.length; i++) {
 //INCORRECT ANSWER PENALTY
 const damageTaken = () => {
     Player.health = Player.health - 10
-    combatLog.innerHTML += ` \n You took 10 damage from the trap. HP: ${Player.health}`
+    combatLog.innerHTML += ` \n You took 10 damage from the encounter. HP: ${Player.health}`
 }
 
 
@@ -280,21 +273,21 @@ const dungeonExit = () => {
         gameProgress.innerHTML = gameProgress
         Player.health = 100
         hpAmount.value = Player.health
-        combatLog.innerHTML = ''
         tonicTrapClear()
         cloakTrapClear()
         gobletTrapClear()
-    } else if (Player.health < 0) {
+        combatLog.innerHTML = ''
+
+    } else if (Player.health <= 0) {
         alert('You died. Press ok to play again')
         gameProgress = '='
         gameProgress.innerHTML = gameProgress
         Player.health = 100
         hpAmount.value = Player.health
-        combatLog.innerHTML = ''
         tonicTrapClear()
         cloakTrapClear()
         gobletTrapClear()
-
+        combatLog.innerHTML = ''
     }
 }
 
@@ -312,17 +305,14 @@ class Player {
     powerGet() {
         power.innerHTML = this.powerName
         power.style.backgroundColor = this.powerColor
-
     }
 
     getClassTitle() {
         classTitle.innerHTML = this.name
-
     }
-
 }
 
-
+//Necessary for the HP bar tracking but has to be declared here after the class constructor
 Player.health = 100
 
 
@@ -333,7 +323,6 @@ class Paladin extends Player {
         this.powerName = 'Divine Blessing'
         this.powerUse = 0
         this.powerColor = 'rgba(130, 15, 13, 0.75)'
-  
     }
     
     divineBlessing() {
@@ -354,8 +343,6 @@ class Archer extends Player {
         this.powerName = 'Lightning Reflexes'
         this.powerUse = 0
         this.powerColor = 'rgba(15, 70, 30, 0.75)'
-
-        
     }
     
     lightningReflexes() {
@@ -376,8 +363,6 @@ class Rogue extends Player {
         this.powerName = 'Trap Sense'
         this.powerUse = 0
         this.powerColor = 'rgba(28, 39, 131, 0.75'
-
-        
     }
     
     trapSense() {
@@ -398,7 +383,6 @@ class Wizard extends Player {
         this.powerName = 'Chronomancer'
         this.powerUse = 0
         this.powerColor = 'rgba(93, 25, 145, 0.75)'
-
     }
     
     chronomancer() {
@@ -444,24 +428,17 @@ Array.from(classButton).forEach((cButton) => {
         player1.getClassTitle(newPal)
         player1.powerGet(newPal)
 
-
-        
     } else if (cButton.classList.contains('archer')) {
         player2.getClassTitle(newArc)
         player2.powerGet(newArc)
-
 
     } else if (cButton.classList.contains('rogue')) {
         player3.getClassTitle(newRog)
         player3.powerGet(newRog)
 
-
     } else if (cButton.classList.contains('wizard')) {
         player4.getClassTitle(newWiz)
         player4.powerGet(newWiz)
-
-
-
     }
     })
 })
@@ -478,6 +455,7 @@ power.addEventListener('click', () => {
     
         } else if (power.innerHTML === 'Trap Sense') {
             alert('This ability can only be used in the trap phase')
+
         } else if (power.innerHTML === 'Chronomancer') {
             alert('This ability can only be used in the trap phase')
         }
@@ -493,8 +471,7 @@ power.addEventListener('click', () => {
             newRog.trapSense()
             
         } else if (power.innerHTML === 'Chronomancer') {
-            newWiz.chronomancer()
-            
+            newWiz.chronomancer()    
         }
     }
 })
