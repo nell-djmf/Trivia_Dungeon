@@ -63,6 +63,18 @@ Choose your toolkit carefully! Your powers may be the difference between life an
 
 <!-- ![A master of the arcane](https://i.imgur.com/pg1Ptbn.png) -->
 
+***
+
+### **Ideas for Features to be Added**
+
+- [ ] More traps!
+- [ ] Trap room element randomizer
+- [ ] Game Progression converted to game board
+- [ ] Dice rolls for moves along game board
+- [ ] Trap spaces, Power-up spaces
+- [ ] Passive bonuses for classes
+- [ ] Trap and question phase power for all classes
+- [ ] Multiplayer
 
 ***
 ### **Known Bugs:**
