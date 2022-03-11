@@ -18,19 +18,24 @@ Traps are the penalty phase for a wrong answer. You will be presented with a ser
 
 ![Traps may spell the end of your adventure](https://static.wikia.nocookie.net/teppen/images/a/a0/Boa046_full.jpg/revision/latest/scale-to-width-down/1000?cb=20210116165350)
 
+### **Item List:**
 - **[Just a rock]** Safe item
 - **[Tonic of Forgetfulness]** Remove a random answer choice for 3 rounds. This may include the correct answer.
 - **[Energy Dampening Cloak]** Forfeit your powers for 3 rounds
 - **[Poison-coated Goblet]** Deal 5 damage per round for 3 rounds
 
 ***
+
+### **HP**
+Players start with 100 HP. For an incorrect answer, the encounter will inflict 10 damage. Reaching 0 will kill the player, ending the game. 
+![Keep your HP above 0!](https://i.stack.imgur.com/vBDSE.png)
+
+***
+
 ### **Powers**
 Powers may be used at the start of a phase. Number of uses vary per player class.
 
 ***
-### **HP**
-Players start with 100 HP. For an incorrect answer, the encounter will inflict 10 damage. Reaching 0 will kill the player, ending the game. 
-![Keep your HP above 0!](https://i.stack.imgur.com/vBDSE.png)
 
 ## **Classes**
 Classes are grouped into two categories: Light and Dark.
@@ -38,31 +43,14 @@ Classes are grouped into two categories: Light and Dark.
 - Dark-attuned classes have powers that influence the trap phase
 
 Choose your toolkit carefully! Your powers may be the difference between life and death.
-***
 
-### **Paladin**
-🛡️ *Power Attribute: Light*
-- **[Divine Blessing]** Pray to the gods for guidance and omit 2 wrong answers (3 uses)
+| Class Name | Type | Uses | Power |
+| -------------- | -------------- | -------------- | -------------- |
+| **🛡️ Paladin** | Light | 3 | **[Divine Blessing]** Pray to the gods for guidance and omit 2 wrong answers |
+| **🏹 Archer** | Light | 2 | **[Lightning Reflexes]** Evade a monster to skip a question entirely |
+| **🗡️ Rogue** | Dark | 3 | **[Trap Sense]** Use your uncanny intuition to narrow down item choices to 1 safe item, 1 cursed |
+| **🪄  Wizard** | Dark | 2 | **[Chronomancer]** Alter time to skip 1 trap phase, with no item penalty |
 
-<!-- ![A paragon of justice](https://i.imgur.com/MiXLOIQ.png) -->
-
-### **Archer**
-🏹 *Power Attribute: Light*
-- **[Lightning Reflexes]** Evade a monster to skip a question entirely (2 uses)
-
-<!-- ![A relentless hunter](https://i.imgur.com/m6DxlWk.png) -->
-
-### **Rogue**
-🗡️ *Power Attribute: Dark*
--  **[Trap Sense]** Use your uncanny intuition to narrow down item choices to 1 safe item, 1 cursed (3 uses)
-
-<!-- ![A knife in the dark](https://i.imgur.com/VBTzwFu.png) -->
-
-### **Wizard**
-🪄 *Power Attribute: Dark*
-- **[Chronomancer]** Alter time to skip 1 trap phase, with no item penalty (2 uses)
-
-<!-- ![A master of the arcane](https://i.imgur.com/pg1Ptbn.png) -->
 
 ***
 
@@ -84,7 +72,7 @@ Choose your toolkit carefully! Your powers may be the difference between life an
 
 - *Rarely, the Tonic of Forgetfulness will not remove random answers. I have not been able to replicate this reliably.*
 
-- *Answering incorrectly still triggers a new question (not visible because of trap room). Removing the new question function call from phaseCheck breaks the game*
+- *Answering incorrectly still triggers a new question (not visible because of trap room). Removing the new question function call from `phaseCheck()` breaks the game*
 
 - *If you give an incorrect answer that kills you, the traps still show before starting a new game*
 
