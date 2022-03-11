@@ -29,15 +29,27 @@ const pickGoblet = document.querySelector('.goblet')
 
 
 //GAME STATUS
-let gameProgress = "="
+let gameProgress = '='
 let trapCheck = false
-let tonicStatus = false
-let cloakStatus = false
-let gobletStatus = false
-let tonicRoundCount = 0
-let cloakRoundCount = 0
-let gobletRoundCount = 0
+// let tonicStatus = false
+// let cloakStatus = false
+// let gobletStatus = false
+// let tonicRoundCount = 0
+// let cloakRoundCount = 0
+// let gobletRoundCount = 0
 
+let trapStatus = {
+    rockStatus: '',
+    tonicStatus: '',
+    cloakStatus: '',
+    gobletStatus: ''
+}
+
+let trapRoundCount = {
+    tonicRoundCount: 0,
+    cloakRoundCount: 0,
+    gobletRoundCount: 0
+}
 
 //ANSWER BOX HTML ELEMENTS
 let answers = Array.from(document.getElementsByClassName('answer-choice'))
@@ -50,11 +62,13 @@ const ans4 = document.querySelector('.ans4')
 //FETCH QUESTIONS
 const newEnemyAppears = async () => {
     trapCheck = false
-
+    console.log(trapStatus)
+    console.log(trapRoundCount)
     let response = await axios.get(
         `https://opentdb.com/api.php?amount=50&type=multiple`
       )
-    //question & categiry variables
+
+    //question & category variables
     let showCategory = response.data.results[0].category
     let showQuestion = response.data.results[0].question
     
@@ -75,16 +89,15 @@ const newEnemyAppears = async () => {
     //update game progress per question
     progress.innerHTML = gameProgress
 
-    
     //undo style changes from Paladin power
-    document.querySelector(".ans3").style.display = ""
-    document.querySelector(".ans4").style.display = ""
+    document.querySelector('.ans3').style.display = ''
+    document.querySelector('.ans4').style.display = ''
     
     shuffle()
     phaseCheck()
     dungeonExit()
-    trapPenalty()
-    trapDuration()
+    console.log(showAnswer1)
+
 }
 
 
@@ -98,22 +111,24 @@ const shuffle = () => {
 }
 
 
-//PHASE CHECK
+//TOGGLE TRAP ELEMENTS
 const phaseCheck = () => {
     if (trapCheck === true) {
-        document.querySelector('.trap-container').style.display = "grid"
-        document.querySelector('.category').style.display = "none"
-        document.querySelector('.answers').style.display = "none"
-        document.querySelector('.question').style.display = "none"
-        document.querySelector(".cloak-wrapper").style.display = ""
-        document.querySelector(".goblet-wrapper").style.display = ""
+        document.querySelector('.trap-container').style.display = 'grid'
+        document.querySelector('.category').style.display = 'none'
+        document.querySelector('.answers').style.display = 'none'
+        document.querySelector('.question').style.display = 'none'
+        document.querySelector('.cloak-wrapper').style.display = ''
+        document.querySelector('.goblet-wrapper').style.display = ''
     } else if (trapCheck === false) {
-        document.querySelector('.category').style.display = ""
-        document.querySelector('.answers').style.display = "flex"
-        document.querySelector('.question').style.display = ""
-        document.querySelector('.trap-container').style.display = "none"
-        
+        document.querySelector('.category').style.display = ''
+        document.querySelector('.answers').style.display = 'flex'
+        document.querySelector('.question').style.display = ''
+        document.querySelector('.trap-container').style.display = 'none'
 
+        //Ensures trap tracking only active in question phase
+        trapPenalty()
+        trapDuration()
     }
 }
 
@@ -133,7 +148,7 @@ const trapPhase = () => {
 
     pickTonic.addEventListener('click', tonicTrap = () => {
         alert(`The TONIC OF FORGETFULNESS makes your mind hazy. You may have difficulty remembering choices.`)
-        tonicStatus = true
+        trapStatus.tonicStatus = 'true'
         pickRock.removeEventListener('click', rockTrap)
         pickTonic.removeEventListener('click', tonicTrap)
         pickCloak.removeEventListener('click', cloakTrap)
@@ -145,7 +160,7 @@ const trapPhase = () => {
 
     pickCloak.addEventListener('click', cloakTrap = () => {
         alert(`The CLOAK OF ENERGY DAMPENING smothers your senses. Your powers are out of reach, for now.`) 
-        cloakStatus = true
+        trapStatus.cloakStatus = 'true'
         pickRock.removeEventListener('click', rockTrap)
         pickTonic.removeEventListener('click', tonicTrap)
         pickCloak.removeEventListener('click', cloakTrap)
@@ -156,7 +171,7 @@ const trapPhase = () => {
 
     pickGoblet.addEventListener('click', gobletTrap = () => {
         alert(`Drinking out of the POISONED GOBLET was not a good idea. You feel yourself grow weak.`)
-        gobletStatus = true
+        trapStatus.gobletStatus = 'true'
         pickRock.removeEventListener('click', rockTrap)
         pickTonic.removeEventListener('click', tonicTrap)
         pickCloak.removeEventListener('click', cloakTrap)
@@ -170,52 +185,61 @@ const trapPhase = () => {
 
 //TRAP PENALTIES
 const trapPenalty = () => {
-    if (tonicStatus === true) {
+    if (trapStatus.tonicStatus === 'true') {
         let hideAnswer = Math.floor(Math.random() * answers.length)
-        answers[hideAnswer].style.display = "none"
-        tonicRoundCount = tonicRoundCount + 1
-
-
-    } else if (cloakStatus === true) {
-        power.style.display = "none"
-        cloakRoundCount = cloakRoundCount + 1
-
-
-    } else if (gobletStatus === true) {
+        answers[hideAnswer].style.display = 'none'
+        trapRoundCount.tonicRoundCount += 1
+    } 
+    
+    if (trapStatus.cloakStatus === 'true') {
+        power.style.display = 'none'
+        trapRoundCount.cloakRoundCount += 1
+    } 
+    
+    if (trapStatus.gobletStatus === 'true') {
         Player.health = Player.health - 5
         hpAmount.value = Player.health
         combatLog.innerHTML += ` \n You took 5 damage from poison. HP: ${Player.health}`
-        gobletRoundCount = gobletRoundCount + 1
-
-
+        trapRoundCount.gobletRoundCount += 1
     }
 }
+
 
 const trapDuration = () => {
-    if (tonicRoundCount === 3) {
-        trapClear()
-    }
+    Object.entries(trapRoundCount).forEach(entry => {
+        if (entry[0] === 'tonicRoundCount' && entry[1] > 3) {
+            tonicTrapClear()
+        } else if (entry[0] === 'cloakRoundCount' && entry[1] > 3) {
+            cloakTrapClear()
+        } else if (entry[0] === 'gobletRoundCount' && entry[1] > 3) {
+            gobletTrapClear()
+        }
 
-    if (cloakRoundCount === 3) {
-        trapClear()
-    }
-
-    if (gobletRoundCount === 3) {
-        trapClear()
-    }
+    })
 }
-    
-const trapClear = () => {
-    tonicStatus = false
-    cloakStatus = false
-    gobletStatus = false
-    ans1.style.display = ""
-    ans2.style.display = ""
-    ans3.style.display = ""
-    ans4.style.display = ""
-    power.style.display = ""
-    roundCount = 0
 
+   
+const tonicTrapClear = () => {
+    trapStatus.tonicStatus = ''
+    ans1.style.display = ''
+    ans2.style.display = ''
+    ans3.style.display = ''
+    ans4.style.display = ''
+    trapRoundCount.tonicRoundCount = 0
+
+}
+
+const cloakTrapClear = () => {
+    trapStatus.cloakStatus = ''
+    power.style.display = ''
+    trapRoundCount.cloakRoundCount = 0
+    
+}
+
+const gobletTrapClear = () => {
+    trapStatus.gobletStatus = ''
+    trapRoundCount.gobletRoundCount = 0
+    
 }
 
 
@@ -223,7 +247,7 @@ const trapClear = () => {
 for (let i = 0; i < answers.length; i++) {
     answers[i].addEventListener('click', () => {
     if (answers[i].classList.contains('ans1')) {
-        gameProgress = gameProgress + "="
+        gameProgress = gameProgress + '='
         progress.innerHTML = gameProgress
         newEnemyAppears()
         dungeonExit()
@@ -235,6 +259,7 @@ for (let i = 0; i < answers.length; i++) {
         hpAmount.value = Player.health
         dungeonExit()
         trapPhase()
+        trapPenalty()
     }
     })
 }
@@ -249,22 +274,26 @@ const damageTaken = () => {
 
 //GAME CONDITIONS
 const dungeonExit = () => {
-    if (gameProgress === "==========" && Player.health > 0) {
+    if (gameProgress === '==========') {
         alert('You win! Press ok to play again')
-        gameProgress = "="
+        gameProgress = '='
         gameProgress.innerHTML = gameProgress
         Player.health = 100
         hpAmount.value = Player.health
-        combatLog.innerHTML = ""
-        trapClear()
+        combatLog.innerHTML = ''
+        tonicTrapClear()
+        cloakTrapClear()
+        gobletTrapClear()
     } else if (Player.health < 0) {
         alert('You died. Press ok to play again')
-        gameProgress = "="
+        gameProgress = '='
         gameProgress.innerHTML = gameProgress
         Player.health = 100
         hpAmount.value = Player.health
-        combatLog.innerHTML = ""
-        trapClear()
+        combatLog.innerHTML = ''
+        tonicTrapClear()
+        cloakTrapClear()
+        gobletTrapClear()
 
     }
 }
@@ -301,18 +330,18 @@ class Paladin extends Player {
     constructor (name, powerName, powerUse, powerColor) {
         super ()
         this.name = name
-        this.powerName = "Divine Blessing"
+        this.powerName = 'Divine Blessing'
         this.powerUse = 0
-        this.powerColor = "rgba(130, 15, 13, 0.75)"
+        this.powerColor = 'rgba(130, 15, 13, 0.75)'
   
     }
     
     divineBlessing() {
-        document.querySelector(".ans3").style.display = "none"
-        document.querySelector(".ans4").style.display = "none"
+        document.querySelector('.ans3').style.display = 'none'
+        document.querySelector('.ans4').style.display = 'none'
         this.powerUse = this.powerUse + 1
         if (this.powerUse === 3) {
-            power.style.display = "none"
+            power.style.display = 'none'
         }
     }
 
@@ -322,9 +351,9 @@ class Archer extends Player {
     constructor (name, powerName, powerUse, powerColor) {
         super ()
         this.name = name
-        this.powerName = "Lightning Reflexes"
+        this.powerName = 'Lightning Reflexes'
         this.powerUse = 0
-        this.powerColor = "rgba(15, 70, 30, 0.75)"
+        this.powerColor = 'rgba(15, 70, 30, 0.75)'
 
         
     }
@@ -334,7 +363,7 @@ class Archer extends Player {
         phaseCheck()
         this.powerUse = this.powerUse + 1
         if (this.powerUse === 2) {
-            power.style.display = "none"
+            power.style.display = 'none'
         }
     }
 
@@ -344,19 +373,19 @@ class Rogue extends Player {
     constructor (name, powerName, powerUse, powerColor) {
         super ()
         this.name = name
-        this.powerName = "Trap Sense"
+        this.powerName = 'Trap Sense'
         this.powerUse = 0
-        this.powerColor = "rgba(28, 39, 131, 0.75"
+        this.powerColor = 'rgba(28, 39, 131, 0.75'
 
         
     }
     
     trapSense() {
-        document.querySelector(".cloak-wrapper").style.display = "none"
-        document.querySelector(".goblet-wrapper").style.display = "none"
+        document.querySelector('.cloak-wrapper').style.display = 'none'
+        document.querySelector('.goblet-wrapper').style.display = 'none'
         this.powerUse = this.powerUse + 1
         if (this.powerUse === 3) {
-            power.style.display = "none"
+            power.style.display = 'none'
         }
     }
 
@@ -366,9 +395,9 @@ class Wizard extends Player {
     constructor (name, powerName, powerUse, powerColor) {
         super ()
         this.name = name
-        this.powerName = "Chronomancer"
+        this.powerName = 'Chronomancer'
         this.powerUse = 0
-        this.powerColor = "rgba(93, 25, 145, 0.75)"
+        this.powerColor = 'rgba(93, 25, 145, 0.75)'
 
     }
     
@@ -381,7 +410,7 @@ class Wizard extends Player {
         pickGoblet.removeEventListener('click', gobletTrap)
         this.powerUse = this.powerUse + 1
         if (this.powerUse === 2) {
-            power.style.display = "none"
+            power.style.display = 'none'
         }
     }
 
@@ -389,27 +418,27 @@ class Wizard extends Player {
 
 
 //CLASS CONSTANTS
-const player1 = new Player('PALADIN', 0, 10, 'Divine Blessing', "rgba(130, 15, 13, 0.75)")
+const player1 = new Player('PALADIN', 0, 10, 'Divine Blessing', 'rgba(130, 15, 13, 0.75)')
 const newPal = new Paladin('PALADIN')
 
-const player2 = new Player('ARCHER', 0, 10, 'Lightning Reflexes', "rgba(15, 70, 30, 0.75)")
+const player2 = new Player('ARCHER', 0, 10, 'Lightning Reflexes', 'rgba(15, 70, 30, 0.75)')
 const newArc = new Archer('ARCHER')
 
-const player3 = new Player('ROGUE', 0, 10, 'Trap Sense', "rgba(28, 39, 131, 0.75")
+const player3 = new Player('ROGUE', 0, 10, 'Trap Sense', 'rgba(28, 39, 131, 0.75')
 const newRog = new Rogue('ROGUE')
 
-const player4 = new Player('WIZARD', 0, 10, 'Chronomancer', "rgba(93, 25, 145, 0.75)")
+const player4 = new Player('WIZARD', 0, 10, 'Chronomancer', 'rgba(93, 25, 145, 0.75)')
 const newWiz = new Wizard('WIZARD')
 
 
 //SET CLASS
 Array.from(classButton).forEach((cButton) => {
     cButton.addEventListener('click', () => {
-    document.querySelector('.class-picker-container').style.display = "none"
-    document.querySelector('.question-wrapper').style.display = "grid"
-    document.querySelector('.answers').style.display = "flex"
-    document.querySelector('.dungeon-prog').style.display = "grid"
-    document.querySelector('.combat-log-wrapper').style.display = "grid"
+    document.querySelector('.class-picker-container').style.display = 'none'
+    document.querySelector('.question-wrapper').style.display = 'grid'
+    document.querySelector('.answers').style.display = 'flex'
+    document.querySelector('.dungeon-prog').style.display = 'grid'
+    document.querySelector('.combat-log-wrapper').style.display = 'grid'
 
     if (cButton.classList.contains('paladin')) {
         player1.getClassTitle(newPal)
@@ -469,5 +498,6 @@ power.addEventListener('click', () => {
         }
     }
 })
+
 
 
