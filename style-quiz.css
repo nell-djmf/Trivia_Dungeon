@@ -306,7 +306,7 @@ body {
     font-family: 'VT323', monospace;
     width: 400px;
     height: 100px;
-    font-size: 35px;
+    font-size: 30px;
     
 }
 
@@ -316,7 +316,7 @@ body {
     font-family: 'VT323', monospace;
     width: 400px;
     height: 100px;
-    font-size: 35px;
+    font-size: 30px;
 }
 
 .ans3 {
@@ -325,7 +325,7 @@ body {
     font-family: 'VT323', monospace;
     width: 400px;
     height: 100px;
-    font-size: 35px;
+    font-size: 30px;
 }
 
 .ans4 {
@@ -334,7 +334,7 @@ body {
     font-family: 'VT323', monospace;
     width: 400px;
     height: 100px;
-    font-size: 35px;
+    font-size: 30px;
     
 }
 
@@ -357,6 +357,7 @@ body {
 
 .progress {
     grid-area: a;
+    margin: auto;
     font-family: 'Press Start 2P', cursive;
     justify-content: center;
     align-content: center;
@@ -370,6 +371,7 @@ body {
 
 .power-title {
     grid-area: c;
+    padding-top: 10px;
     font-family: 'Press Start 2P', cursive;
     justify-content: center;
     align-content: center;
@@ -394,9 +396,12 @@ body {
 
 #HP-amount {
     grid-area: f;
-    padding: 40px 0;
+    appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
     width: 90%;
     height: 50px;
+    margin: auto;
     justify-content: center;
     align-content: center;
     text-align: left;
