@@ -4,7 +4,7 @@ You find yourself at the bottom of a dark dungeon, populated by rabid beasts (wh
 
 
 
-![A dark and mysterious dungeon...](https://www.hp.com/us-en/shop/app/assets/images/uploads/prod/best-dungeon-crawler-games1592591617374955.jpg?impolicy=prdimg&imdensity=1&imwidth=1000)
+![A dark and mysterious dungeon...](https://i.imgur.com/rm0HaZQ.jpg)
 
 ***
 
