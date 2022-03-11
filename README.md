@@ -1,4 +1,5 @@
 # **Trivia Dungeon**
+
 ## **Premise**
 You find yourself at the bottom of a dark dungeon, populated by rabid beasts (who happen to be trivia fans). Proceed through the dungeon, answering questions to make it out alive!
 
@@ -67,6 +68,8 @@ Choose your toolkit carefully! Your powers may be the difference between life an
 
 ### **Ideas for Features to be Added**
 
+**[Trello Board](https://trello.com/b/3VNz8LRb/trivia-dungeon)**
+
 - [ ] More traps!
 - [ ] Trap room element randomizer
 - [ ] Game Progression converted to game board
@@ -79,8 +82,10 @@ Choose your toolkit carefully! Your powers may be the difference between life an
 ***
 ### **Known Bugs:**
 
-- *Rarely, the Tonic of Forgetfulness will not remove random answers. i have not been able to replicate this reliably.*
+- *Rarely, the Tonic of Forgetfulness will not remove random answers. I have not been able to replicate this reliably.*
+
 - *Answering incorrectly still triggers a new question (not visible because of trap room). Removing the new question function call from phaseCheck breaks the game*
+
 - *If you give an incorrect answer that kills you, the traps still show before starting a new game*
 
 
