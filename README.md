@@ -70,6 +70,8 @@ Choose your toolkit carefully! Your powers may be the difference between life an
 ***
 ### **Known Bugs:**
 
+- *If questions aren't being fetched, it means I need to get a new link from the API. I believe they expire after a certain amount of time*
+
 - *Rarely, the Tonic of Forgetfulness will not remove random answers. I have not been able to replicate this reliably.*
 
 - *Answering incorrectly still triggers a new question (not visible because of trap room). Removing the new question function call from `phaseCheck()` breaks the game*
