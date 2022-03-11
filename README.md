@@ -79,7 +79,8 @@ Choose your toolkit carefully! Your powers may be the difference between life an
 ***
 ### **Known Bugs:**
 
-*Rarely, the Tonic of Forgetfulness will not remove random answers. i have not been able to replicate this reliably.*
+- *Rarely, the Tonic of Forgetfulness will not remove random answers. i have not been able to replicate this reliably.*
+- *Cloak trap status not clearing at certain points
 
 
 ***
