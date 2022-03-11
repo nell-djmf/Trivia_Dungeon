@@ -362,7 +362,7 @@ class Rogue extends Player {
         this.name = name
         this.powerName = 'Trap Sense'
         this.powerUse = 0
-        this.powerColor = 'rgba(28, 39, 131, 0.75'
+        this.powerColor = 'rgba(28, 39, 131, 0.75)'
     }
     
     trapSense() {
