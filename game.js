@@ -384,6 +384,10 @@ class Wizard extends Player {
     chronomancer() {
         newEnemyAppears()
         phaseCheck()
+        pickRock.removeEventListener('click', rockTrap)
+        pickTonic.removeEventListener('click', tonicTrap)
+        pickCloak.removeEventListener('click', cloakTrap)
+        pickGoblet.removeEventListener('click', gobletTrap)
         this.powerUse = this.powerUse + 1
         if (this.powerUse === 2) {
             power.style.display = "none"
