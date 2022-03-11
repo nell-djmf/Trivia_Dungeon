@@ -96,6 +96,7 @@ const shuffle = () => {
 
 }
 
+//PHASE CHECK
 
 const phaseCheck = () => {
     if (trapCheck === true) {

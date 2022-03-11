@@ -7,15 +7,30 @@
     <link rel= "stylesheet" href="landing_pad_style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <title>Enter if you dare...</title>
 </head>
 <body>
     <div class="enter-wrapper">
         <h1 class="welcome">TRIVIA DUNGEON</h1>
         <a class="button" href="game_stage.html">Click to ENTER...</a>
+        <div class="info-wrapper">
+            <h3 class="info-title">RULES</h3>
+            <button class="info-button" onclick="toggleRules()">
+            </button>
+        </div>
+        <p class="intro">
+            You find yourself at the bottom of a dark dungeon, populated by rabid beasts (<span class="red">who happen to be trivia fans</span>). Proceed through the dungeon, answering questions to make it out alive!
+        </p>
+        <p class="rules">
+            <span class="red">1.</span> Answer 10 questions correctly to find your way out.
+            </br>
+            <span class="red">2.</span> Answering incorrectly will deal damage to you and trigger a trap.
+            </br>
+            <span class="red">3.</span> You must have more than 0 HP to escape.
+        </p>
+     
     </div>
- 
 </body>
 <script src="landing_pad.js"></script>
 </html>

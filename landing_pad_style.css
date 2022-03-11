@@ -1,26 +1,37 @@
 
 body {
     background-color: black;
+    color: white;
     background-image: url('https://i.imgur.com/o7cGv85.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-size: cover;
+    text-align: center;
 
 }
 
 .enter-wrapper {
-    display: grid; 
-    grid-template-columns: 1fr; 
-    grid-template-rows: 1fr 1fr; 
-    gap: 0px 0px;
-    grid-template-areas: 
-      "a"
-      "b"; 
-    margin: auto;
-    width: 50%;
-    padding: 100px 0;
-    
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-columns: 0.5fr 1.5fr; 
+  grid-template-rows: 1fr 1fr 1fr;  
+  grid-template-areas: 
+    "a a"
+    "b b"
+    "c d";
+
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 50%;
+  height: 500px;
+  position: absolute;
+  top: 15%;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
+
 
 .welcome {
     grid-area: a;
@@ -30,21 +41,62 @@ body {
 }
 
 .button {
-    grid-area: b;
-    width: 80%;
-    height: 50px;
-    margin: auto;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 25px;
+  grid-area: b;
+  width: 80%;
+  height: 50px;
+  margin: auto;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 25px;
 
 }
  
 a {
-    text-decoration: none;
-    color: white;
-    animation: 2s linear infinite blink;
+  text-decoration: none;
+  color: white;
+  animation: 2s linear infinite blink;
 }
 
+.info-wrapper {
+  grid-area: c;
+  background-color: rgba(0, 0, 0, 0);
+  justify-content: center;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+
+  
+
+}
+
+
+.info-button {
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url(https://svgshare.com/i/f3y.svg);
+  height: 100px;
+  width: 100px;
+}
+
+.intro {
+  display: block;
+  grid-area: d;
+  font-family: 'VT323', monospace;
+  text-align: left;
+  font-size: 25px;
+}
+
+.red {
+  color: red;
+}
+
+.rules {
+  display: none;
+  grid-area: d;
+  font-family: 'VT323', monospace;
+  text-align: left;
+  font-size: 25px;
+}
+
+
+/* ANIMATION */
 @keyframes blink {
     0%,
     100% {

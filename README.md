@@ -1,6 +1,7 @@
 # **Trivia Dungeon**
 ## **Premise**
 You find yourself at the bottom of a dark dungeon, populated by rabid beasts (who happen to be trivia fans). Proceed through the dungeon, answering questions to make it out alive!
+
 ![A dark and mysterious dungeon...](https://developerfreaks.com/unity/M/medieval-dungeon-64640/medieval-dungeon-64640.jpg)
 
 ***
