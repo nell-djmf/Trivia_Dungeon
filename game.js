@@ -1,12 +1,12 @@
 const DOMAIN = 'https://opentdb.com/api.php?amount=50&type=multiple'
 
+
 //CLASS PICK
 const classButton = document.getElementsByClassName('class-button')
 const pickPal = document.querySelector('.paladin')
 const pickArc = document.querySelector('.archer')
 const pickRog = document.querySelector('.rogue')
 const pickWiz = document.querySelector('.wizard')
-
 
 
 //GET TRIVIA HTML ELEMENTS
@@ -19,6 +19,7 @@ const hpAmount = document.getElementById('HP-amount')
 const classTitle = document.querySelector('.power-title')
 const combatLog = document.querySelector('.combat-log')
 
+
 //GET TRAP HTML ELEMENTS
 const itemButton = document.getElementsByClassName('item-button')
 const pickRock = document.querySelector('.rock')
@@ -30,13 +31,13 @@ const pickGoblet = document.querySelector('.goblet')
 //GAME STATUS
 let gameProgress = "="
 let trapCheck = false
-
 let tonicStatus = false
 let cloakStatus = false
 let gobletStatus = false
 let tonicRoundCount = 0
 let cloakRoundCount = 0
 let gobletRoundCount = 0
+
 
 //ANSWER BOX HTML ELEMENTS
 let answers = Array.from(document.getElementsByClassName('answer-choice'))
@@ -46,7 +47,6 @@ const ans3 = document.querySelector('.ans3')
 const ans4 = document.querySelector('.ans4')
 
 
-
 //FETCH QUESTIONS
 const newEnemyAppears = async () => {
     trapCheck = false
@@ -54,29 +54,29 @@ const newEnemyAppears = async () => {
     let response = await axios.get(
         `https://opentdb.com/api.php?amount=50&type=multiple`
       )
-    
+    //question & categiry variables
     let showCategory = response.data.results[0].category
-
     let showQuestion = response.data.results[0].question
-
+    
+    //answer variables
     let showAnswer1 = response.data.results[0].correct_answer
     let showAnswer2 = response.data.results[0].incorrect_answers[0]
     let showAnswer3 = response.data.results[0].incorrect_answers[1]
     let showAnswer4 = response.data.results[0].incorrect_answers[2]
-
+    
+    //update page with API data
     category.innerHTML = showCategory
-
     question.innerHTML = showQuestion
-
-    progress.innerHTML = gameProgress
-
     ans1.innerHTML = showAnswer1
     ans2.innerHTML = showAnswer2
     ans3.innerHTML = showAnswer3
     ans4.innerHTML = showAnswer4
-    console.log(showAnswer1)
     
+    //update game progress per question
+    progress.innerHTML = gameProgress
 
+    
+    //undo style changes from Paladin power
     document.querySelector(".ans3").style.display = ""
     document.querySelector(".ans4").style.display = ""
     
@@ -87,6 +87,7 @@ const newEnemyAppears = async () => {
     trapDuration()
 }
 
+
 //Shuffle Answer HTML Elements
 const shuffle = () => {
     let shuffleAnswers = document.querySelector('.answers')
@@ -96,8 +97,8 @@ const shuffle = () => {
 
 }
 
-//PHASE CHECK
 
+//PHASE CHECK
 const phaseCheck = () => {
     if (trapCheck === true) {
         document.querySelector('.trap-container').style.display = "grid"
@@ -115,6 +116,7 @@ const phaseCheck = () => {
 
     }
 }
+
 
 //TRAP PHASE
 const trapPhase = () => {
@@ -166,14 +168,7 @@ const trapPhase = () => {
 }
 
 
-
-
-
-
-
 //TRAP PENALTIES
-
-
 const trapPenalty = () => {
     if (tonicStatus === true) {
         let hideAnswer = Math.floor(Math.random() * answers.length)
@@ -195,8 +190,6 @@ const trapPenalty = () => {
 
     }
 }
-
-
 
 const trapDuration = () => {
     if (tonicRoundCount === 3) {
@@ -246,12 +239,12 @@ for (let i = 0; i < answers.length; i++) {
     })
 }
 
+
 //INCORRECT ANSWER PENALTY
 const damageTaken = () => {
     Player.health = Player.health - 10
     combatLog.innerHTML += ` \n You took 10 damage from the trap. HP: ${Player.health}`
 }
-
 
 
 //GAME CONDITIONS
@@ -277,9 +270,7 @@ const dungeonExit = () => {
 }
 
 
-
 //CLASSES
-
 class Player {
     constructor (name, powerUse, health, powerName, powerColor) {
         this.name = name
@@ -302,8 +293,8 @@ class Player {
 
 }
 
-Player.health = 100
 
+Player.health = 100
 
 
 class Paladin extends Player {
@@ -395,6 +386,8 @@ class Wizard extends Player {
     }
 
 }
+
+
 //CLASS CONSTANTS
 const player1 = new Player('PALADIN', 0, 10, 'Divine Blessing', "rgba(130, 15, 13, 0.75)")
 const newPal = new Paladin('PALADIN')
@@ -408,8 +401,8 @@ const newRog = new Rogue('ROGUE')
 const player4 = new Player('WIZARD', 0, 10, 'Chronomancer', "rgba(93, 25, 145, 0.75)")
 const newWiz = new Wizard('WIZARD')
 
-//SET CLASS
 
+//SET CLASS
 Array.from(classButton).forEach((cButton) => {
     cButton.addEventListener('click', () => {
     document.querySelector('.class-picker-container').style.display = "none"
@@ -443,7 +436,6 @@ Array.from(classButton).forEach((cButton) => {
     }
     })
 })
-
 
 
 // USE POWER
