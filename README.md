@@ -16,7 +16,6 @@ The game lasts a total of 10 rounds, with each round including a question phase,
 ### **Trap Room**
 Traps are the penalty phase for a wrong answer. You will be presented with a series of items, most with a penalty, and one safe item that will bring you back to the answer phase.
 
-![Traps may spell the end of your adventure](https://static.wikia.nocookie.net/teppen/images/a/a0/Boa046_full.jpg/revision/latest/scale-to-width-down/1000?cb=20210116165350)
 
 ### **Item List:**
 - **[Just a rock]** Safe item
@@ -36,6 +35,8 @@ Players start with 100 HP. For an incorrect answer, the encounter will inflict 1
 Powers may be used at the start of a phase. Number of uses vary per player class.
 
 ***
+
+![class selection](https://imgur.com/o7cGv85)
 
 ## **Classes**
 Classes are grouped into two categories: Light and Dark.
