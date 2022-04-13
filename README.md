@@ -36,7 +36,7 @@ Powers may be used at the start of a phase. Number of uses vary per player class
 
 ***
 
-![class selection](https://imgur.com/o7cGv85)
+![class selection](https://i.imgur.com/r4aT9zF.png)
 
 ## **Classes**
 Classes are grouped into two categories: Light and Dark.
